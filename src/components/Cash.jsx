@@ -6,58 +6,51 @@ import { useSelector } from "react-redux";
 import { Totalcost } from "../Redux/reducer";
 import pound from "../Assets/images/pound-sterling 1.svg";
 import credit from "../Assets/images/credit-cards-payment 1.svg";
-import deletesvg from "../Assets/images/delete_backspace.svg";
 import backbtn from "../Assets/images/Arrow left.png";
 import qrsvg from "../Assets/images/qr-code (1) 1.svg";
-
+import { calcNumber, currancy, paiseamt } from "../constant";
 const Cash = () => {
   const costreducer = useSelector(Totalcost);
   const cost = Number(costreducer.totalcost);
   const [cash, setcash] = useState(0);
   const [paise, setpaise] = useState(0);
   const [Balance, setBalance] = useState(0);
-  // const Cashround = cash && ;
+  const [contant, setcontant] = useState("cash");
 
-  console.log(cash);
-  const calcNumber = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "0",
-    "00",
-    "b",
-    ".",
-    "cancel",
-  ];
-  const currancy = ["1", "2", "5", "10", "20", "50", "100"];
-  const paiseamt = ["1", "2", "5", "10", "20", "50"];
   const handleCalculator = (prev, val) => {
-    if (val === ".") {
-      return prev + ".";
-    } else if (val === "cancel") {
+    // check if first input is number or not
+    if (prev === 0 && !isNaN(val)) return val;
+    // check if  input is number
+
+    if (!isNaN(val)) {
+      return prev + val;
+    }
+
+    if (val === "cancel") {
       return 0;
+    } else if (val.key === "delete") {
+      if (prev > 0) {
+        if (prev.length === 1) {
+          return 0;
+        }
+        return prev.slice(0, -1);
+      } else {
+        return 0;
+      }
     } else {
-      return prev.slice(0, -1);
+      return prev + ".";
     }
   };
 
-  const handlepaise = (prev,val) => {
-
-      
+  const handlepaise = (prev, val) => {
     // Number(prev) + Number(`.${val}`)
-
-  }
+  };
   useEffect(() => {
     let balanceamt =
       Number(cost) <= cash && cost !== 0 ? Number(cash) - cost : 0;
     setBalance(balanceamt);
   }, [cash]);
+
   return (
     <div className="cash-container">
       <div className="cash">
@@ -70,126 +63,142 @@ const Cash = () => {
           </div>
           <div>
             <div className="type">
-              <button>
+              <button
+                onClick={() => setcontant("cash")}
+                className={contant === "cash" && `${"active"}`}
+              >
                 <img src={pound} alt="" />
                 <span>Cash</span>
               </button>
-              <button>
+              <button
+                onClick={() => setcontant("card")}
+                className={contant === "card" && `${"active"}`}
+              >
                 <img src={credit} alt="" />
                 <span>Card</span>
               </button>
-              <button>
+
+              <button
+                onClick={() => setcontant("upi")}
+                className={contant === "upi" && `${"active"}`}
+              >
                 <img src={qrsvg} alt="" />
                 <span>UPI</span>
               </button>
             </div>
             <div className="bill-amt">
               <h3>Payable Amount</h3>
-              <span>{cost}</span>
+              <span>£{cost}</span>
             </div>
           </div>
         </header>
         <main>
-          <div className="calculator">
-            <div>
-              <h3>Cash Tendered {"($)"}</h3>
-              <input type="text" name="" id="" value={Cash} />
-            </div>
-            {Number(cost) > cash && cash !== 0 ? (
-              <p className="alert">
-                Amount should be equal or greater than the total
-              </p>
-            ) : null}
-            <div className="numbers">
-              {calcNumber?.map((num) => (
-                <button
-                  onClick={() =>
-                    setcash((prev) =>
-                      prev
-                        ? isNaN(num)
-                          ? handleCalculator(prev, num)
-                          : prev + num
-                        : num
-                    )
-                  }
-                >
-                  {num}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="payment-div">
-            <div className="currency">
-              <h4>Currencies</h4>
-              <h4>Currency</h4>
-              <div>
-                {currancy.map((val) => (
-                  <button
-                    onClick={() =>
-                      setcash((prev) =>
-                        prev ? Number(prev) + Number(val) : Number(val)
-                      )
-                    }
-                  >
-                    {val}
-                  </button>
-                ))}
+          {contant === "cash" ? (
+            <>
+              <div className="calculator">
+                <div>
+                  <h3>Cash Tendered {"($)"}</h3>
+                  <input type="text" name="" id="" value={cash} />
+                </div>
+                {Number(cost) > cash && cash !== 0 ? (
+                  <p className="alert">
+                    Amount should be equal or greater than the total
+                  </p>
+                ) : null}
+                <div className="numbers">
+                  {calcNumber?.map((num) => (
+                    <button
+                      onClick={() =>
+                        setcash((prev) => handleCalculator(prev, num))
+                      }
+                    >
+                      {num}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="currency">
-              <p>Coin</p>
-              <div>
-                {paiseamt.map((val) => (
-                  <button
-                    onClick={() =>
-                      setcash((prev) =>
-                        prev
-                          ? handlepaise(prev,val)
-                          : Number(`.${val}`)
-                      )
-                    }
-                  >
-                    <span>p</span> <span>{val}</span>
-                  </button>
-                ))}
-                {/* <button>
-                  <span>p</span> <span>1</span>
-                </button>
-                <button>
-                  <span>p</span> <span>2</span>
-                </button>
-                <button>
-                  <span>p</span> <span>5</span>
-                </button>
-                <button>
-                  <span>p</span> <span>10</span>
-                </button>
-                <button>
-                  <span>p</span> <span>20</span>
-                </button>
-                <button id="block">
-                  <span>p</span> <span>50</span>
-                </button> */}
+              <div className="payment-div">
+                <div className="currency">
+                  <h4>Currencies</h4>
+                  <h4>Currency</h4>
+                  <div>
+                    {currancy.map((val) => (
+                      <button
+                        onClick={() =>
+                          setcash((prev) =>
+                            prev ? Number(prev) + Number(val) : Number(val)
+                          )
+                        }
+                      >
+                        {val}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="currency">
+                  <p>Coin</p>
+                  <div>
+                    {paiseamt.map((val) => (
+                      <button
+                        onClick={() =>
+                          setcash((prev) =>
+                            prev ? handlepaise(prev, val) : Number(`.${val}`)
+                          )
+                        }
+                      >
+                        <span>p</span> <span>{val}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3>Pay Details</h3>
+                  <div className="pay-details">
+                    <div>
+                      <h4>Credited </h4>
+                      <span>{`${cash}`}</span>
+                    </div>
+                    <div>
+                      <h4>Balance</h4>
+                      <span>{Balance}</span>
+                    </div>
+                  </div>
+                  <div className="bill-btn">
+                    <button>Split Bill</button>
+                    <button>Print Bill</button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div>
+            </>
+          ) : contant === "card" ? (
+            <div className="card">
               <h3>Pay Details</h3>
-              <div className="pay-details">
-                <div>
-                  <h4>Credited </h4>
-                  <span>{`${cash}`}</span>
-                </div>
-                <div>
-                  <h4>Balance</h4>
-                  <span>{Balance}</span>
-                </div>
+              <div>
+                <p>To Pay</p>
+                <span>{cost}</span>
               </div>
-              <div className="bill-btn">
-                <button>Split Bill</button>
-                <button>Print Bill</button>
-              </div>
+              <button>Pay</button>
             </div>
-          </div>
+          ) : contant === "upi" ? (
+            <div className="upi">
+              <div>
+                <p>Pay Type</p>
+                <select name="" id="select">
+                  <option value="">Gpay</option>
+                  <option value="">Phonepe</option>
+                  <option value="">Paytm</option>
+                </select>
+              </div>
+              <div className="paydetails">
+                <p>Pay Details</p>
+                <div>
+                  <p>To Pay</p>
+                  <span>{cost}</span>
+                </div>
+              </div>
+              <button>Pay</button>
+            </div>
+          ) : null}
         </main>
         <Footer />
       </div>

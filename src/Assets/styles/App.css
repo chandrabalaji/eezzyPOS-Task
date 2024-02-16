@@ -388,7 +388,8 @@ footer p {
   font-size: 14px;
 }
 
-.footer > .btn > button,a {
+.footer > .btn > button,
+a {
   outline: none;
   border: none;
   padding: 10px 32px;
@@ -448,6 +449,7 @@ footer > .btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 
 .foo-act {
@@ -482,7 +484,7 @@ footer > .btn {
     font-size: 1.3rem;
     padding: 10px 5px;
   }
-  .footer > .btn > button {
+  .footer > .btn > button,a {
     padding: 8px 5px;
   }
   .footer > .btn > button > img {
@@ -496,4 +498,3 @@ footer > .btn {
     font-size: 16px;
   }
 }
-

@@ -13,6 +13,7 @@ $clr-green: #10b96d;
   cursor: pointer;
 }
 @mixin bill-btn {
+  @include base-btn();
   background-color: $lite-black;
   color: #ffffff;
 
@@ -36,7 +37,6 @@ $clr-green: #10b96d;
     padding: 15px;
     width: 65%;
     header {
-      //   max-height: 80px;
       border-bottom: 2px solid $lite-black;
       div {
         display: flex;
@@ -57,7 +57,6 @@ $clr-green: #10b96d;
         display: flex;
         gap: 10px;
         button {
-          @include base-btn();
           @include bill-btn();
           display: flex;
           justify-content: center;
@@ -66,6 +65,9 @@ $clr-green: #10b96d;
           gap: 8px;
           padding: 8px 25px;
           font-weight: bold;
+        }
+        .active {
+          background-color: #2563eb;
         }
       }
       .bill-amt {
@@ -115,7 +117,6 @@ $clr-green: #10b96d;
           grid-template-columns: repeat(3, minmax(30px, 124px));
           gap: 5px;
           button {
-            @include base-btn();
             @include bill-btn();
             font-size: 2.5rem;
             color: $text-color;
@@ -140,7 +141,6 @@ $clr-green: #10b96d;
             display: flex;
             gap: 15px;
             button {
-              @include base-btn();
               @include bill-btn();
               display: flex;
               align-items: center;
@@ -176,7 +176,82 @@ $clr-green: #10b96d;
           }
         }
       }
+      // card styles
+      .card {
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+          font-size: 16px;
+          font-weight: 450;
+          letter-spacing: 0.5px;
+        }
+        div {
+          display: flex;
+          background-color: #111827;
+          justify-content: space-between;
+          align-items: center;
+          width: 950px;
+          padding: 0 10px;
+          border-radius: 3px;
+          span {
+            color: $clr-green;
+          }
+        }
+        button {
+          @include btn-primary();
+          margin-top: 20px;
+          align-self: flex-end;
+          width: max-content;
+          padding: 10px 25px;
+        }
+      }
+      //UPI
+      .upi {
+        display: grid;
+        select {
+          width: 450px;
+          padding: 10px;
+          border: 1px solid $lite-black;
+          background-color: #111827;
+          color: $lite-black;
+          font-size: 16px;
+          border-radius: 4px;
+          font-weight: 500;
+
+          option {
+            font-size: 16px;
+            padding: 15px;
+            &:hover {
+              background-color: $color-blue;
+            }
+          }
+        }
+        .paydetails {
+          width: 950px;
+
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #111827;
+            padding: 0 10px;
+            border-radius: 3px;
+          }
+          span {
+            color: $clr-green;
+          }
+        }
+        button {
+          @include btn-primary();
+          align-self: flex-end;
+          justify-self: end;
+          width: 100px;
+          margin-top: 20px;
+        }
+      }
     }
+
     .foot {
       width: 900px;
       overflow: scroll;
@@ -195,6 +270,10 @@ $clr-green: #10b96d;
     .billing-head {
       display: none;
     }
+    .bill-items {
+      padding-top: 10px;
+      height: 500px;
+    }
     .bill-itemPrice {
       button {
         display: none;
@@ -203,10 +282,7 @@ $clr-green: #10b96d;
     #generic {
       display: none;
     }
-    .billAmount {
-      position: relative;
-      top: 140px;
-    }
+
     .coupen {
       display: none;
     }
@@ -233,6 +309,11 @@ $clr-green: #10b96d;
           }
         }
       }
+      .card {
+        div {
+          max-width: 450px;
+        }
+      }
     }
     .payment-div {
       #block {
@@ -242,11 +323,15 @@ $clr-green: #10b96d;
         div {
           display: flex;
           gap: 5px;
-          button {
-            @include base-btn();
-            @include bill-btn();
-          }
+          // button {
+          //   @include bill-btn();
+          // }
         }
+      }
+    }
+    .upi {
+      .paydetails {
+        max-width: 450px;
       }
     }
     .foot {

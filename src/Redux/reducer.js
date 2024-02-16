@@ -30,32 +30,30 @@ export default (state = initialState, { type, payload }) => {
         (pro) => pro.id === payload.id
       );
 
-      return existingProduct
-        ? {
-            //if
-            ...state,
-            SelectedProductList: state.SelectedProductList.map((pro) =>
-              pro.id === existingProduct.id
-                ? {
-                    ...pro,
-
-                    available_qty: pro.available_qty + 1,
-                  }
-                : pro
-            ),
-          }
-        : {
-            //else
-            ...state,
-            SelectedProductList: [
-              ...state.SelectedProductList,
-              {
-                ...payload,
-
-                available_qty: 1,
-              },
-            ],
-          };
+      if (existingProduct) {
+        // If product already exists, increase the available_qty
+        return {
+          ...state,
+          SelectedProductList: state.SelectedProductList.map((pro) => {
+            if (pro.id === existingProduct.id) {
+              return {
+                ...pro,
+                available_qty: pro.available_qty + 1,
+              };
+            }
+            return pro;
+          }),
+        };
+      } else {
+        // If product doesn't exist, add it with available_qty set to 1
+        return {
+          ...state,
+          SelectedProductList: [
+            ...state.SelectedProductList,
+            { ...payload, available_qty: 1 },
+          ],
+        };
+      }
 
     case deleteProduct:
       return {

@@ -4,31 +4,37 @@ import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { MdKitchen } from "react-icons/md";
 import { LuUser2 } from "react-icons/lu";
 import { TbReportSearch } from "react-icons/tb";
-import devide from "../Assets/images/Rectangleee.png";
+import devid from "../Assets/images/Rectangleee.png";
+import takeway from "../Assets/images/paper-bag (1) 1.svg";
+import dine from "../Assets/images/dining-table.png";
+import order from "../Assets/images/checkout.png";
+import customer from "../Assets/images/User.png";
+
 const Footer = () => {
   return (
     <div className="foot">
       <div className="foo-act">
+        <img src={takeway} alt="" />
         <p>Take Away</p>
       </div>
-      <img src={devide} alt="" />
+      <img src={devid} alt="" />
       <div>
-        <MdOutlineAirlineSeatReclineNormal />
+        <img src={dine} alt="" />
         <p>Dine in</p>
       </div>
-      <img src={devide} alt="" />
+      <img src={devid} alt="" />
 
       <div>
-        <MdKitchen />
+        <img src={order} alt="" />
         <p>Order</p>
       </div>
-      <img src={devide} alt="" />
+      <img src={devid} alt="" />
 
       <div>
-        <LuUser2 />
+        <img src={customer} alt="" />
         <p>Customer</p>
       </div>
-      <img src={devide} alt="" />
+      <img src={devid} alt="" />
 
       <div>
         <TbReportSearch />
