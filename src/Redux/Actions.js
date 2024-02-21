@@ -3,6 +3,8 @@ export const deleteProduct = "deleteProduct";
 export const Addcategory = "Addcategory";
 export const Selectedproducts = "Selectedproducts";
 export const totalcost = "totalcost";
+export const decrementitem = "decrementitem ";
+export const Cleareitem = "Cleareitem ";
 
 // actions --//
 
@@ -14,21 +16,30 @@ export const CategoryAction = (payload) => {
 };
 
 export const productAction = (payload) => {
-  // console.log("prductActioncalled", payload);
   return {
     type: AddProduct,
     payload: payload,
   };
 };
+export const CleareAction = () => {
+  return {
+    type: Cleareitem,
+    payload: [],
+  };
+};
 export const SelectedAction = (payload) => {
-  // console.log("prductActioncalled", payload);
   return {
     type: Selectedproducts,
     payload: payload,
   };
 };
+export const DecrementAction = (payload) => {
+  return {
+    type: decrementitem,
+    payload: payload,
+  };
+};
 export const deleteAction = (payload) => {
-  // console.log("prductActioncalled", payload);
   return {
     type: deleteProduct,
     payload: payload,

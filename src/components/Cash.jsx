@@ -43,7 +43,9 @@ const Cash = () => {
   };
 
   const handlepaise = (prev, val) => {
-    // Number(prev) + Number(`.${val}`)
+    let amt = Number(prev) + Number(`.${val}`);
+
+    return amt.toFixed(2);
   };
   useEffect(() => {
     let balanceamt =
@@ -56,7 +58,7 @@ const Cash = () => {
       <div className="cash">
         <header>
           <div className="bill">
-            <h3>Bill Payment</h3>
+            <p>Bill Payment</p>
             <Link to="/home">
               <img src={backbtn} alt="" />
             </Link>
@@ -87,7 +89,7 @@ const Cash = () => {
               </button>
             </div>
             <div className="bill-amt">
-              <h3>Payable Amount</h3>
+              <p>Payable Amount</p>
               <span>£{cost}</span>
             </div>
           </div>
@@ -97,7 +99,7 @@ const Cash = () => {
             <>
               <div className="calculator">
                 <div>
-                  <h3>Cash Tendered {"($)"}</h3>
+                  <p>Cash Tendered {"(£)"}</p>
                   <input type="text" name="" id="" value={cash} />
                 </div>
                 {Number(cost) > cash && cash !== 0 ? (
@@ -119,8 +121,8 @@ const Cash = () => {
               </div>
               <div className="payment-div">
                 <div className="currency">
-                  <h4>Currencies</h4>
-                  <h4>Currency</h4>
+                  <p>Currencies</p>
+                  <p>Currency</p>
                   <div>
                     {currancy.map((val) => (
                       <button
@@ -130,7 +132,7 @@ const Cash = () => {
                           )
                         }
                       >
-                        {val}
+                        £ {val}
                       </button>
                     ))}
                   </div>
@@ -141,9 +143,7 @@ const Cash = () => {
                     {paiseamt.map((val) => (
                       <button
                         onClick={() =>
-                          setcash((prev) =>
-                            prev ? handlepaise(prev, val) : Number(`.${val}`)
-                          )
+                          setcash((prev) => handlepaise(prev, val))
                         }
                       >
                         <span>p</span> <span>{val}</span>
@@ -152,15 +152,15 @@ const Cash = () => {
                   </div>
                 </div>
                 <div>
-                  <h3>Pay Details</h3>
+                  <h4>Pay Details</h4>
                   <div className="pay-details">
                     <div>
-                      <h4>Credited </h4>
-                      <span>{`${cash}`}</span>
+                      <p>Credited </p>
+                      <span>{`£ ${cash}`}</span>
                     </div>
                     <div>
-                      <h4>Balance</h4>
-                      <span>{Balance}</span>
+                      <p>Balance</p>
+                      <span>{`£ ${Balance}`}</span>
                     </div>
                   </div>
                   <div className="bill-btn">
@@ -175,7 +175,7 @@ const Cash = () => {
               <h3>Pay Details</h3>
               <div>
                 <p>To Pay</p>
-                <span>{cost}</span>
+                <span>{`£ ${cost}`}</span>
               </div>
               <button>Pay</button>
             </div>
@@ -193,7 +193,7 @@ const Cash = () => {
                 <p>Pay Details</p>
                 <div>
                   <p>To Pay</p>
-                  <span>{cost}</span>
+                  <span>{`£ ${cost}`}</span>
                 </div>
               </div>
               <button>Pay</button>

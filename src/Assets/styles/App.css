@@ -2,7 +2,7 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .login {
@@ -19,12 +19,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .logo {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.logo p {
+  font-size: 12px;
 }
 .userinfo {
   display: flex;
@@ -117,16 +119,14 @@ input:focus {
   margin-bottom: 10px;
 }
 .butten-div button {
-  background-color: orange;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.5px;
   border: none;
   color: #fff;
   padding: 15px;
-  font-size: 15px;
-  font-weight: 400;
-  font-family: "Gill Sans", sans-serif;
   border-radius: 5px;
   padding: 25px 20px;
-  cursor: pointer;
 }
 /* menulist */
 
@@ -148,10 +148,10 @@ input:focus {
   background-color: #374151;
   background-color: transparent;
   border-radius: 5px;
-  font-size: 13px;
-  font-weight: 550;
-  padding: 9px 6px;
-  color: #ffffff6c;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px;
+  color: #9ca3af;
   width: 550px;
 }
 .menulist-container > header > div {
@@ -164,10 +164,11 @@ input:focus {
   justify-content: center;
   align-items: center;
   border: 1px solid rgba(132, 130, 130, 0.47);
-  padding: 8px 5px;
+  padding: 8px 2px;
   border-radius: 4px;
   width: 30px;
   color: #60a5fa;
+  font-size: 19px;
 }
 .header-border {
   display: flex;
@@ -179,7 +180,8 @@ input:focus {
   margin: 0px !important;
   border-radius: 4px;
   padding: 4px 5px;
-  font-size: 1.1rem;
+  font-size: 15px;
+  font-weight: 500;
 }
 .KOT {
   display: flex;
@@ -190,38 +192,54 @@ input:focus {
   margin: 0px !important;
   border-radius: 4px;
   padding: 4px 5px;
-  font-size: 1.1rem;
+  font-size: 15px;
+  font-weight: 500;
   gap: 5px;
 }
-
+.KOT img {
+  width: 18px;
+  height: 18px;
+}
+.header-border img {
+  width: 18px;
+  height: 18px;
+}
 /* menu & menu list */
 
 .menulist {
   display: grid;
   grid-template-columns: repeat(4, minmax(64px, 1fr));
-  /* display: flex;
-  flex-wrap: wrap; */
-  row-gap: 10px;
+  gap: 10px;
   width: 85%;
   margin-top: 25px;
   overflow: scroll;
+  max-height: 600px;
 }
 .menulist::-webkit-scrollbar {
   display: none;
 }
+.menulist h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ee1818;
+}
 .menu {
-  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: max-content; */
   background-color: rgb(64, 65, 65);
   border-top: 7px solid green;
   color: #c4c4c4;
-  max-height: 80px;
-  min-height: 64px;
-  /* min-height: 120px; */
+  max-height: 75px;
+  min-height: 75px;
   padding: 5px;
   border-radius: 5px 5px 0 0;
   max-width: 135px;
   min-width: 135px;
   cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
 }
 .menu > p {
   margin: 0;
@@ -284,6 +302,9 @@ input:focus {
 .billing-lable {
   display: flex;
   justify-content: end;
+  color: #e5e7eb;
+  font-size: 12px;
+  font-weight: 600;
   background-color: #1f2937;
   border-radius: 10px;
   padding: 10px;
@@ -306,17 +327,53 @@ input:focus {
   padding: 0 5px;
   font-size: 14px;
   color: #ffffffb0;
+  margin-right: 20px;
   font-weight: 400;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  box-sizing: border-box;
+}
+/* // billing single menu  */
+button {
+  cursor: pointer;
+}
+.bills {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.bills > button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+.bill-item-div {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+.bill-item-div p,
+span {
+  font-size: 13px;
+  font-weight: 400;
 }
 .bill-item {
   display: flex;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
-  margin: 10px;
-  border-radius: 8px;
+  /* margin: 10px; */
 }
-
+.D-none {
+  display: none !important;
+}
+.bill-item-edit {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  font-family: Poppins sans-serif;
+}
 .black {
   background-color: #1f2937;
 }
@@ -331,6 +388,38 @@ input:focus {
   cursor: pointer;
   outline: none;
   border: none;
+}
+
+/* edit  */
+
+.bill-item-edit {
+  padding: 5px 10px;
+}
+.item-modified-btn-div > button {
+  font-size: 30px;
+  outline: none;
+  border: none;
+  background-color: #6b7280;
+  color: #10b96d;
+  padding: 0 8px;
+  margin-right: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.item-modified-btn-div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#edit-notes {
+  display: flex;
+  padding: 0 10px;
+
+  gap: 20px;
+}
+#decrease {
+  font-size: 31px;
+  padding: 0 10px;
 }
 #generic {
   display: flex;
@@ -355,6 +444,7 @@ input:focus {
   margin: 15px 10px 15px 10px;
   border-radius: 7px;
   padding: 5px;
+  max-height: 160px !important;
 }
 .bill-cat {
   display: flex;
@@ -362,14 +452,15 @@ input:focus {
   padding: 5px;
   color: #ffffff6c;
   font-size: 14px;
-  font-weight: 100;
+  font-weight: 400;
 }
 .bill-cat > p {
   margin: 0;
 }
 .total {
-  margin-top: 50px;
+  margin-top: 30px;
   font-size: 18px;
+  font-weight: 600;
   color: #fffffff7;
 }
 
@@ -385,7 +476,8 @@ footer {
 }
 footer p {
   margin: 0;
-  font-size: 14px;
+  font-size: 10px;
+  font-weight: 600;
 }
 
 .footer > .btn > button,
@@ -436,6 +528,8 @@ footer > .btn {
   gap: 20px;
   align-items: center;
   justify-content: space-between;
+  width: 900px;
+  overflow: scroll;
   font-size: 18px;
   color: #ffffff6c;
   background-color: #374151;
@@ -450,17 +544,26 @@ footer > .btn {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  min-width: 200px;
+  cursor: pointer;
+}
+.foot div p {
+  font-size: 14px;
+  font-weight: 500;
+}
+.foo-act {
+  color: #60a5fa;
 }
 
-.foo-act {
-  color: #1670be;
+.foot::-webkit-scrollbar {
+  display: none;
 }
 @media (max-width: 720px) {
   .category {
     width: 100px;
   }
   .butten-div button {
-    font-size: 15px;
+    font-size: 16px;
     padding: 15px;
   }
   .menulist-container {
@@ -470,9 +573,12 @@ footer > .btn {
     width: 30%;
   }
   .menulist {
-    grid-template-columns: repeat(2, minmax(64px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     width: 90%;
     gap: 10px;
+    overflow-y: scroll;
+    height: 580px;
+    box-sizing: border-box;
   }
   .billing-container {
     width: 32%;
@@ -484,7 +590,8 @@ footer > .btn {
     font-size: 1.3rem;
     padding: 10px 5px;
   }
-  .footer > .btn > button,a {
+  .footer > .btn > button,
+  a {
     padding: 8px 5px;
   }
   .footer > .btn > button > img {

@@ -14,28 +14,41 @@ import del from "../Assets/images/delete.png";
 // } from "../features/others/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { SelectedProductList } from "../Redux/reducer";
-import { deleteAction, totalcostAction } from "../Redux/Actions";
+import {
+  deleteAction,
+  totalcostAction,
+  SelectedAction,
+  DecrementAction,
+  CleareAction,
+} from "../Redux/Actions";
 import { Link } from "react-router-dom";
+import notes from "../Assets/images/Notes.svg";
+import dropdown from "../Assets/images/Icon (1).svg";
+import icon from "../Assets/images/Icon.svg";
 
 const Billing = () => {
   const Dispatch = useDispatch();
   const selectItemsreducer = useSelector(SelectedProductList);
   const selectItems = selectItemsreducer.SelectedProductList;
   const [TotalPrice, SetTotalPrice] = useState(0);
+  const [itemMod, SetitemMod] = useState(null);
+
   useEffect(() => {
     const Price = selectItems?.reduce((acc, obj) => {
-      // console.log(obj);
-      return Number(acc) + Number(obj.price * obj.available_qty);
+      return Number(acc) + Number(obj?.price * obj?.available_qty);
     }, 0);
     Dispatch(totalcostAction(Price.toFixed(0)));
     SetTotalPrice(Price.toFixed(0));
   }, [selectItems]);
 
-  // console.log(totalcost);
   const handleDelete = (id) => {
     Dispatch(deleteAction(id));
-    // console.log(id);
   };
+
+  const handleDropdown = (index) => {
+    SetitemMod((item) => (item === index ? null : index));
+  };
+
   return (
     <div className="billing-container">
       <div className="billing-head">
@@ -53,22 +66,50 @@ const Billing = () => {
         {selectItems &&
           selectItems?.map((item, index) => (
             <div
-              className={index % 2 ? "bill-item" : "bill-item black"}
-              key={item.id}
+              className={index % 2 ? "bill-item-div" : "bill-item-div black"}
             >
-              <div className="bill-itemProduct-div">
-                <p>{item?.prod_name}</p>
-                <span>x {item?.available_qty}</span>
-              </div>
-              <div className="bill-itemPrice">
-                <span> &#163;{item?.price} </span>
-                <button onClick={() => handleDelete(item.id)}>
-                  <img src={del} alt="" />
+              <div className="bills">
+                <button onClick={() => handleDropdown(index)}>
+                  <img src={dropdown} alt="" />
                 </button>
+                <div className="bill-item">
+                  <div className="bill-itemProduct-div">
+                    <p>{item?.prod_name}</p>
+                    <span>x {item?.available_qty}</span>
+                  </div>
+                  <div className="bill-itemPrice">
+                    <span> &#163;{item?.price} </span>
+                    <button onClick={() => handleDelete(item.id)}>
+                      <img src={del} alt="" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className={itemMod === index ? "bill-item-edit" : "D-none"}>
+                <div className="item-modified-btn-div">
+                  <button
+                    id="decrease"
+                    onClick={() => Dispatch(DecrementAction(item.id))}
+                  >
+                    -
+                  </button>
+                  <span>{item?.available_qty}</span>
+
+                  <button onClick={() => Dispatch(SelectedAction(item))}>
+                    +
+                  </button>
+                </div>
+                <div>&#163;{item?.price}</div>
+                <div id="edit-notes">
+                  <img src={notes} alt="" />
+                  <img src={icon} alt="" />
+                </div>
               </div>
             </div>
           ))}
       </div>
+
       <div id="generic">
         <button>Generic</button>
       </div>
@@ -108,7 +149,7 @@ const Billing = () => {
           <p>Pending</p>
         </div>
         <div className="btn">
-          <button id="clear">
+          <button id="clear" onClick={() => Dispatch(CleareAction())}>
             <img src={clear} alt="" />
           </button>
           <p>Clear</p>

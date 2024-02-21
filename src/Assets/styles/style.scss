@@ -16,8 +16,6 @@ $clr-green: #10b96d;
   @include base-btn();
   background-color: $lite-black;
   color: #ffffff;
-
-  //   color: #2563eb; // active
 }
 @mixin btn-primary {
   @include base-btn();
@@ -25,12 +23,21 @@ $clr-green: #10b96d;
   color: $text-color;
   padding: 10px 15px;
 }
-
+@mixin font-style($size: "16px") {
+  @if $size == "16px" {
+    font-size: $size;
+    font-weight: 600;
+  } @else {
+    font-size: $size;
+    font-weight: 600;
+  }
+}
 .cash-container {
   display: flex;
   width: 100vw;
   height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Poppins;
+
   .cash {
     background-color: $background;
     color: $text-color;
@@ -42,15 +49,17 @@ $clr-green: #10b96d;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-family: Poppins;
       }
       .bill {
+        @include font-style($size: 16px);
         padding: 0 5px;
         max-height: 24px;
 
         a {
           @include btn-primary();
           margin-top: 10px;
-          padding: 8px;
+          padding: 6px 10px;
         }
       }
       .type {
@@ -61,10 +70,11 @@ $clr-green: #10b96d;
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 14px;
           gap: 8px;
           padding: 8px 25px;
-          font-weight: bold;
+          span {
+            @include font-style($size: 14px);
+          }
         }
         .active {
           background-color: #2563eb;
@@ -75,13 +85,13 @@ $clr-green: #10b96d;
         flex-direction: column;
         align-items: end;
         padding: 5px 5px;
-        h3 {
+        p {
+          @include font-style($size: 16px);
           margin-bottom: 1px;
         }
         span {
-          font-size: 1.5rem;
+          @include font-style($size: 24px);
           color: $clr-green;
-          font-weight: 600;
         }
       }
     }
@@ -90,6 +100,11 @@ $clr-green: #10b96d;
       display: flex;
       justify-content: space-between;
       .calculator {
+        div {
+          p {
+            @include font-style($size: 16px);
+          }
+        }
         input {
           color: $text-color;
           background-color: $background;
@@ -103,7 +118,6 @@ $clr-green: #10b96d;
           margin-bottom: 12px;
           text-align: end;
           &:focus {
-            // background-color: #10b96d;
             border: 2px solid $color-blue;
           }
         }
@@ -137,25 +151,33 @@ $clr-green: #10b96d;
         width: 50%;
         .currency {
           margin-top: 20px;
+          p {
+            @include font-style($size: 16px);
+          }
           div {
             display: flex;
             gap: 15px;
             button {
               @include bill-btn();
+              @include font-style($size: 17px);
               display: flex;
               align-items: center;
               justify-content: center;
               gap: 5px;
-              font-size: 17px;
               color: #9ca3af;
-              font-weight: 550;
             }
+          }
+          span {
+            @include font-style($size: 14px);
           }
         }
         .pay-details {
           background-color: #111827;
           border-radius: 5px;
           margin-bottom: 20px;
+          p {
+            @include font-style($size: 14px);
+          }
           div {
             display: flex;
             justify-content: space-between;
@@ -164,6 +186,7 @@ $clr-green: #10b96d;
             max-height: 40px;
           }
           span {
+            @include font-style($size: 16px);
             color: $clr-green;
           }
         }
@@ -173,6 +196,7 @@ $clr-green: #10b96d;
           justify-content: space-between;
           button {
             @include btn-primary();
+            @include font-style($size: 12px);
           }
         }
       }
@@ -182,8 +206,7 @@ $clr-green: #10b96d;
         flex-direction: column;
 
         h3 {
-          font-size: 16px;
-          font-weight: 450;
+          @include font-style($size: 16px);
           letter-spacing: 0.5px;
         }
         div {
@@ -195,6 +218,7 @@ $clr-green: #10b96d;
           padding: 0 10px;
           border-radius: 3px;
           span {
+            @include font-style($size: 16px);
             color: $clr-green;
           }
         }
@@ -221,6 +245,7 @@ $clr-green: #10b96d;
 
           option {
             font-size: 16px;
+
             padding: 15px;
             &:hover {
               background-color: $color-blue;
@@ -239,6 +264,7 @@ $clr-green: #10b96d;
             border-radius: 3px;
           }
           span {
+            @include font-style($size: 16px);
             color: $clr-green;
           }
         }

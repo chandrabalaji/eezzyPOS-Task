@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import veg from "../Assets/images/veg.png";
 import nonveg from "../Assets/images/non-veg.png";
 
-import { GET_PRODUCTS } from "../constant";
+import { GET_PRODUCTS, handleSelect } from "../constant";
 import { productAction, SelectedAction } from "../Redux/Actions";
 import { productslist } from "../Redux/reducer";
 const Menulist = () => {
@@ -44,7 +44,7 @@ const Menulist = () => {
           .includes(search.toLowerCase().replace(/\s+/g, ""))
       )
     : products;
-  console.log(Searchproducts);
+  // console.log(Searchproducts);
 
   const handleSelect = (data) => {
     Dispatch(SelectedAction(data));
@@ -86,17 +86,17 @@ const Menulist = () => {
               key={pro.id}
               onClick={() => handleSelect(pro)}
             >
-              <h4>{pro.prod_name}</h4>
+              <p>{pro.prod_name}</p>
               <div className="menuprice">
-                <h4>
+                <p>
                   £ <span>{pro.price}</span>
-                </h4>
+                </p>
                 <img src={pro.type === "Veg" ? veg : nonveg} alt="" />
               </div>
             </div>
           ))
         ) : (
-          <h1>Not</h1>
+          <h4>No Products</h4>
         )}
       </div>
     </div>

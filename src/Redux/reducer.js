@@ -4,6 +4,8 @@ import {
   Selectedproducts,
   deleteProduct,
   totalcost,
+  decrementitem,
+  Cleareitem,
 } from "./Actions";
 
 const initialState = {
@@ -14,18 +16,14 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
-  // console.log("reducer-category", payload);
   switch (type) {
     case Addcategory:
-      // console.log("reducer-munu", payload);
       return { ...state, categorys: payload };
     case AddProduct:
-      // console.log("reducer-munu", payload);
       return { ...state, products: payload };
+    case Cleareitem:
+      return { ...state, SelectedProductList: payload };
     case Selectedproducts:
-      // console.log(payload.prod_item[0].quantity);
-      console.log(payload.id);
-
       let existingProduct = state.SelectedProductList.find(
         (pro) => pro.id === payload.id
       );
@@ -54,6 +52,21 @@ export default (state = initialState, { type, payload }) => {
           ],
         };
       }
+
+    case decrementitem:
+      return {
+        ...state,
+        SelectedProductList: state.SelectedProductList.map((pro) => {
+          if (pro.id === payload) {
+            return {
+              ...pro,
+              available_qty: pro.available_qty >= 2 ? pro.available_qty - 1 : 1,
+            };
+          } else {
+            return pro;
+          }
+        }),
+      };
 
     case deleteProduct:
       return {
