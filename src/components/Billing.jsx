@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import wifi from "../Assets/images/Icon.png";
-import cus from "../Assets/images/Group 793.png";
+import cus from "../Assets/images/customer.svg";
 import use from "../Assets/images/User.png";
 import hand from "../Assets/images/hand 1.png";
 import pending from "../Assets/images/pending.png";
@@ -50,8 +50,8 @@ const Billing = () => {
   };
 
   return (
-    <div className="billing-container">
-      <div className="billing-head">
+    <div className="billing-container ">
+      <div className="billing-head pt-3">
         <p>Take Away</p>
         <div className="img-div">
           <img src={wifi} alt="" />
@@ -59,14 +59,16 @@ const Billing = () => {
           <img src={use} alt="" />
         </div>
       </div>
-      <div className="billing-lable">
+      <div className="billing-lable mt-3">
         <p>Bill No:1</p>
       </div>
       <div className="bill-items">
         {selectItems &&
           selectItems?.map((item, index) => (
             <div
-              className={index % 2 ? "bill-item-div" : "bill-item-div black"}
+              className={
+                index % 2 ? "bill-item-div p-3" : "bill-item-div black p-3"
+              }
             >
               <div className="bills">
                 <button onClick={() => handleDropdown(index)}>

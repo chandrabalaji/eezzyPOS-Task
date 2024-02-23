@@ -1,3 +1,7 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 $background: #1f2937;
 $text-color: #ffffff;
 $color-blue: #2563eb;
@@ -32,6 +36,7 @@ $clr-green: #10b96d;
     font-weight: 600;
   }
 }
+
 .cash-container {
   display: flex;
   width: 100vw;
@@ -279,9 +284,9 @@ $clr-green: #10b96d;
     }
 
     .foot {
-      width: 900px;
+      width: 1000px;
       overflow: scroll;
-      div {
+      a {
         min-width: 200px;
       }
     }
@@ -293,12 +298,13 @@ $clr-green: #10b96d;
   .billing-container {
     padding-top: 20px;
     width: 35%;
+    box-sizing: border-box;
     .billing-head {
       display: none;
     }
     .bill-items {
-      padding-top: 10px;
-      height: 500px;
+      padding-top: 5px;
+      height: 450px;
     }
     .bill-itemPrice {
       button {
@@ -318,6 +324,48 @@ $clr-green: #10b96d;
   }
 }
 
+.dinein {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+
+  .foot {
+    width: 100vw;
+  }
+}
+.orders {
+  .orderOnlinePage {
+    max-height: calc(100vh - 60px); // footer height:60
+  }
+  .foot {
+    width: 100vw;
+  }
+
+  .orderpage-div,
+  .split,
+  .pending-div {
+    input {
+      font-size: 10px;
+      font-weight: 600;
+      border: 1px solid rgba(132, 130, 130, 0.47);
+    }
+  }
+}
+
+.customer {
+  input {
+    font-size: 10px;
+    font-weight: 600;
+    border: 1px solid rgba(132, 130, 130, 0.47);
+  }
+  .foot {
+    width: 100vw;
+  }
+  .offcanvas {
+    min-width: 450px;
+    max-width: 450px;
+  }
+}
 @media screen and (max-width: 720px) {
   .cash {
     max-width: 470px;

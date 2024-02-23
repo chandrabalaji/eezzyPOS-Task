@@ -1,3 +1,7 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 body {
   padding: 0;
   margin: 0;
@@ -79,19 +83,18 @@ input:focus {
 }
 
 /* category */
-.container {
+.containers {
   height: 100vh;
   box-sizing: border-box;
 }
-.category-container {
+.category-containers {
   display: flex;
-  /* height: 90vh; */
 }
 .category {
   color: white;
   background-color: #374151;
-  width: 25%;
-  max-width: 230px;
+  width: 35%;
+  max-width: 260px;
   padding: 10px;
 }
 .category-head {
@@ -119,7 +122,7 @@ input:focus {
   margin-bottom: 10px;
 }
 .butten-div button {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 19.5px;
   border: none;
@@ -228,7 +231,7 @@ input:focus {
   flex-direction: column;
   justify-content: space-between;
   /* height: max-content; */
-  background-color: rgb(64, 65, 65);
+  background-color: #374151;
   border-top: 7px solid green;
   color: #c4c4c4;
   max-height: 75px;
@@ -271,7 +274,7 @@ input:focus {
   background-color: #374151;
   color: #fff;
   z-index: 1;
-  /* height: 99vh; */
+  height: 100vh;
 }
 .billing-head {
   display: flex;
@@ -312,7 +315,7 @@ input:focus {
 }
 
 .bill-items {
-  height: 350px;
+  height: 335px;
   overflow: scroll;
   /* border: 2px solid blue; */
 }
@@ -329,7 +332,6 @@ input:focus {
   color: #ffffffb0;
   margin-right: 20px;
   font-weight: 400;
-  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   box-sizing: border-box;
 }
 /* // billing single menu  */
@@ -355,7 +357,7 @@ button {
 }
 .bill-item-div p,
 span {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
 }
 .bill-item {
@@ -539,19 +541,25 @@ footer > .btn {
   left: 0;
   right: 0;
 }
-.foot > div {
+.foot > a {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  min-width: 200px;
+  min-width: 230px;
   cursor: pointer;
+  margin: 12px 0px !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0 !important;
 }
 .foot div p {
   font-size: 14px;
   font-weight: 500;
 }
 .foo-act {
+  padding: 0;
+  margin: 0;
   color: #60a5fa;
 }
 

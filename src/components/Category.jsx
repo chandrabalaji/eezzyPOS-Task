@@ -40,8 +40,8 @@ const Category = () => {
   }, [data]);
 
   return (
-    <div className="container">
-      <div className="category-container">
+    <div className="containers">
+      <div className="category-containers">
         <div className="category">
           <div className="category-head">
             <div id="active">

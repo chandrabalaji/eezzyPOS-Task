@@ -137,7 +137,7 @@ const Cash = () => {
                     ))}
                   </div>
                 </div>
-                <div className="currency">
+                <div className="currency mb-4">
                   <p>Coin</p>
                   <div>
                     {paiseamt.map((val) => (
@@ -153,7 +153,7 @@ const Cash = () => {
                 </div>
                 <div>
                   <h4>Pay Details</h4>
-                  <div className="pay-details">
+                  <div className="pay-details h-20 mt-4 flex flex-col justify-center">
                     <div>
                       <p>Credited </p>
                       <span>{`£ ${cash}`}</span>
@@ -174,7 +174,7 @@ const Cash = () => {
             <div className="card">
               <h3>Pay Details</h3>
               <div>
-                <p>To Pay</p>
+                <p className="p-3">To Pay</p>
                 <span>{`£ ${cost}`}</span>
               </div>
               <button>Pay</button>
@@ -192,7 +192,7 @@ const Cash = () => {
               <div className="paydetails">
                 <p>Pay Details</p>
                 <div>
-                  <p>To Pay</p>
+                  <p className="p-3">To Pay</p>
                   <span>{`£ ${cost}`}</span>
                 </div>
               </div>
