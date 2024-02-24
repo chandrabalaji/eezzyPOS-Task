@@ -6,10 +6,18 @@ import del from "../Assets/images/delete.png";
 import tick from "../Assets/images/Group 1579.svg";
 import userimg from "../Assets/images/userimg.png";
 import pencile from "../Assets/images/Pencil.svg";
+import user from "../Assets/images/user887.svg";
 import cus from "../Assets/images/customer.svg";
 import { HiUserAdd } from "react-icons/hi";
-import { HiFire } from "react-icons/hi";
-import "flowbite";
+
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "./ui/sheet";
 
 const Customer = () => {
   const [Customer, setCustomer] = useState("All Customer");
@@ -55,167 +63,120 @@ const Customer = () => {
                 Clear
               </button>
             </div>
-
-            {/* <!-- drawer init and toggle --> */}
-            <div class="text-center">
-              <button
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                type="button"
-                data-drawer-target="drawer-right-example"
-                data-drawer-show="drawer-right-example"
-                data-drawer-placement="right"
-                aria-controls="drawer-right-example"
-              >
-                Show right drawer
-              </button>
-            </div>
-
-            {/* <!-- drawer component --> */}
-            <div
-              id="drawer-right-example"
-              class="offcanvas fixed top-0 right-0 z-40 h-screen p-2 overflow-y-auto transition-transform translate-x-full  duration-700 bg-lite-black"
-              tabindex="-1"
-              aria-labelledby="drawer-right-label"
-            >
-              <h5
-                id="drawer-right-label"
-                class="inline-flex items-center mb-4 text-base font-semibold text-white"
-              >
-                Add Customer
-              </h5>
-              <button
-                type="button"
-                data-drawer-hide="drawer-right-example"
-                aria-controls="drawer-right-example"
-                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                <svg
-                  class="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
-                <span class="sr-only">Close menu</span>
-              </button>
-
-              <div className=" ">
-                <div className="flex  justify-between items-center  space-x-2 px-4">
-                  <div>
-                    <img src={cus} alt="" width={100} height={150} />
+            <Sheet>
+              <SheetTrigger className="bg-blue-500 flex items-center  p-3 font-medium space-x-1">
+                <HiUserAdd /> <span>Add Customer</span>
+              </SheetTrigger>
+              <SheetContent className=" min-w-[460px] px-5 bg-lite-black">
+                <SheetHeader>
+                  <SheetTitle>Add Customer</SheetTitle>
+                </SheetHeader>
+                <SheetDescription>
+                  <div className="customerinfo mt-3">
+                    <div className="flex  justify-between items-center  space-x-2 ps-4 pe-6">
+                      <div>
+                        <img
+                          src={user}
+                          alt=""
+                          width={100}
+                          height={100}
+                          className="bg-dark-black px-3 py-4 pb-1"
+                        />
+                      </div>
+                      <div className="grid ">
+                        <label htmlFor="" className="text-sm font-medium">
+                          First Name
+                        </label>
+                        <input
+                          type="text"
+                          className=" w-64 bg-dark-black  mb-3"
+                        />
+                        <label htmlFor="" className="text-sm font-medium">
+                          Last Name
+                        </label>
+                        <input type="text" className="bg-dark-black " />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 mt-3 gap-x-6 gap-y-3">
+                      <div className="grid">
+                        <label htmlFor="" className="text-sm font-medium">
+                          Phone Number <span>*</span>
+                        </label>
+                        <input type="text" className="w-48 bg-dark-black  " />
+                      </div>
+                      <div>
+                        <label htmlFor="" className="text-sm font-medium">
+                          Post Code <span>*</span>
+                        </label>
+                        <input type="text" className="w-48 bg-dark-black " />
+                      </div>
+                      <div>
+                        <label htmlFor="" className="text-sm font-medium">
+                          Email <span>*</span>
+                        </label>
+                        <input
+                          type="email"
+                          name=""
+                          id=""
+                          className="w-48 bg-dark-black "
+                        />
+                      </div>
+                      <div className="grid">
+                        <label htmlFor="" className="text-sm font-medium">
+                          Area
+                        </label>
+                        <input type="text" className="w-48 bg-dark-black " />
+                      </div>
+                      <div className="grid">
+                        <label htmlFor="" className="text-sm font-medium">
+                          DOB
+                        </label>
+                        <input
+                          type="date"
+                          name=""
+                          id=""
+                          className="w-48 bg-dark-black "
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="" className="text-sm font-medium">
+                          Anniversary
+                        </label>
+                        <input
+                          type="date"
+                          name=""
+                          id=""
+                          className="w-48 bg-dark-black "
+                        />
+                      </div>
+                      <div className="grid">
+                        <label htmlFor="" className="text-sm font-medium">
+                          Address
+                        </label>
+                        <textarea
+                          name=""
+                          id=""
+                          cols="20"
+                          rows="5"
+                          className="bg-dark-black "
+                        ></textarea>
+                      </div>
+                      <div>
+                        <label htmlFor="" className="text-sm font-medium">
+                          Tax Number
+                        </label>
+                        <input type="text" className="w-48 bg-dark-black  " />
+                      </div>
+                    </div>
                   </div>
-                  <div className="grid ">
-                    <label htmlFor="" className="text-sm font-medium">
-                      First Name
-                    </label>
-                    <input
-                      type="text"
-                      className=" w-64 bg-dark-black rounded-md"
-                    />
-                    <label htmlFor="" className="text-sm font-medium">
-                      Last Name
-                    </label>
-                    <input type="text" className="bg-dark-black rounded-md" />
+                  <div className="flex justify-end pe-5">
+                    <button className="bg-blue-500 cursor-pointer px-5 py-2 rounded">
+                      Save
+                    </button>
                   </div>
-                </div>
-                <div className="grid grid-cols-2 mt-3 gap-x-6 gap-y-3">
-                  <div className="grid">
-                    <label htmlFor="" className="text-sm font-medium">
-                      Phone Number <span>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="w-48 bg-dark-black rounded-md "
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="" className="text-sm font-medium">
-                      Post Code <span>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="w-48 bg-dark-black rounded-md"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="" className="text-sm font-medium">
-                      Email <span>*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name=""
-                      id=""
-                      className="w-48 bg-dark-black rounded-md"
-                    />
-                  </div>
-                  <div className="grid">
-                    <label htmlFor="" className="text-sm font-medium">
-                      Area
-                    </label>
-                    <input
-                      type="text"
-                      className="w-48 bg-dark-black rounded-md"
-                    />
-                  </div>
-                  <div className="grid">
-                    <label htmlFor="" className="text-sm font-medium">
-                      DOB
-                    </label>
-                    <input
-                      type="date"
-                      name=""
-                      id=""
-                      className="w-48 bg-dark-black rounded-md"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="" className="text-sm font-medium">
-                      Anniversary
-                    </label>
-                    <input
-                      type="date"
-                      name=""
-                      id=""
-                      className="w-48 bg-dark-black rounded-md"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="" className="text-sm font-medium">
-                      Address
-                    </label>
-                    <textarea
-                      name=""
-                      id=""
-                      cols="20"
-                      rows="5"
-                      className="bg-dark-black rounded-md"
-                    ></textarea>
-                  </div>
-                  <div>
-                    <label htmlFor="" className="text-sm font-medium">
-                      Tax Number
-                    </label>
-                    <input
-                      type="text"
-                      className="w-48 bg-dark-black rounded-md "
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-end pe-5">
-                <button className="bg-blue-500 cursor-pointer px-5 py-2 rounded">
-                  Save
-                </button>
-              </div>
-            </div>
+                </SheetDescription>
+              </SheetContent>
+            </Sheet>
           </div>
         </header>
         <section className="mt-4 ">

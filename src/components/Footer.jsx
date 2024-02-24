@@ -31,13 +31,13 @@ const Footer = () => {
       </Link>
       <img src={devid} alt="" />
 
-      <Link to='/customers'>
+      <Link to="/customers">
         <img src={customer} alt="" />
         <p className="text-sm">Customer</p>
       </Link>
       <img src={devid} alt="" />
 
-      <Link>
+      <Link to="/report">
         <TbReportSearch />
         <p className="text-sm">Report</p>
       </Link>

@@ -361,9 +361,27 @@ $clr-green: #10b96d;
   .foot {
     width: 100vw;
   }
-  .offcanvas {
-    min-width: 450px;
-    max-width: 450px;
+}
+.customerinfo {
+  label {
+    font-size: 12px;
+  }
+  input {
+    border-radius: 5px;
+    padding: 4px;
+  }
+  img {
+    border-radius: 8px;
+  }
+}
+.report {
+  .foot {
+    width: 100vw;
+  }
+  main {
+    div {
+      border-radius: 8px;
+    }
   }
 }
 @media screen and (max-width: 720px) {
