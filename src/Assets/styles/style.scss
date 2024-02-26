@@ -382,7 +382,29 @@ $clr-green: #10b96d;
     div {
       border-radius: 8px;
     }
+    table {
+      tr {
+        border-bottom: 0.5px solid #4b5563;
+
+        :last-child {
+          text-align: end;
+        }
+        td {
+          padding-top: 15px !important;
+        }
+      }
+    }
   }
+}
+.day-closing {
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.scroll::-webkit-scrollbar {
+  display: none;
 }
 @media screen and (max-width: 720px) {
   .cash {

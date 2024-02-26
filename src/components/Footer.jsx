@@ -5,7 +5,7 @@ import React from "react";
 // import { LuUser2 } from "react-icons/lu";
 import { TbReportSearch } from "react-icons/tb";
 import devid from "../Assets/images/Rectangleee.png";
-import takeway from "../Assets/images/takeway.svg";
+import takeway from "../Assets/images/Mask group (1).svg";
 import dine from "../Assets/images/dining-table.png";
 import order from "../Assets/images/checkout.png";
 import customer from "../Assets/images/User.png";

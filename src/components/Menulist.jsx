@@ -65,7 +65,7 @@ const Menulist = () => {
           </div>
         </div>
         <div>
-          <div className="header-border">
+          <div className="header-border ">
             <img src={percentage} alt="" />
             <p>combo</p>
           </div>
