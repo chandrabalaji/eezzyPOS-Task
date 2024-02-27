@@ -379,8 +379,8 @@ $clr-green: #10b96d;
     width: 100vw;
   }
   main {
-    div {
-      border-radius: 8px;
+    .custome-border {
+      border-radius: 5px;
     }
     table {
       tr {

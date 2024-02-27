@@ -8,6 +8,9 @@ import Dinein from "./components/Dinein";
 import Orders from "./components/Orders";
 import Customer from "./components/Customer";
 import Report from "./components/Report";
+import PayinOut from "./pages/reports/PayinOut";
+import Dayclose from "./pages/reports/Dayclose";
+import Dailyreport from "./pages/reports/Dailyreport";
 
 function App() {
   return (
@@ -19,7 +22,11 @@ function App() {
         <Route path="/Dinein" element={<Dinein />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customer />} />
-        <Route path="/report" element={<Report />} />
+        <Route path="/report" element={<Report />}>
+          <Route index element={<PayinOut />} />
+          <Route path="dayclose" element={<Dayclose />} />
+          <Route path="DailyReport" element={<Dailyreport />} />
+        </Route>
       </Routes>
     </div>
   );

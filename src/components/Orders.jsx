@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
-import { orderpage } from "../pages/orderhistory";
-import { onlineOrderPage } from "../pages/onlineorder";
-import { splitpage } from "../pages/split";
-import { pendingpage } from "../pages/pending";
-import { kotpage } from "../pages/kot";
+import { orderpage } from "../pages/orders/orderhistory";
+import { onlineOrderPage } from "../pages/orders/onlineorder";
+import { splitpage } from "../pages/orders/split";
+import { pendingpage } from "../pages/orders/pending";
+import { kotpage } from "../pages/orders/kot";
 import Sidebar from "./Sidebar";
 
 const Orders = () => {

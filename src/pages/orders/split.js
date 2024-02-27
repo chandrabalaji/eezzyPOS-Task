@@ -1,4 +1,4 @@
-import search from "../Assets/images/Icon (2).svg";
+import search from "../../Assets/images/Icon (2).svg";
 
 const splitpagee = () => {
   return (

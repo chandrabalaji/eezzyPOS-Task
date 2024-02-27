@@ -1,9 +1,9 @@
-import tick from "../Assets/images/Group 1579.svg";
-import done from "../Assets/images/Thumb up.svg";
-import arrow from "../Assets/images/up-down 1.svg";
-import takeway from "../Assets/images/takeway.svg";
-import del from "../Assets/images/delete.png";
-import search from "../Assets/images/Icon (2).svg";
+import tick from "../../Assets/images/Group 1579.svg";
+import done from "../../Assets/images/Thumb up.svg";
+import arrow from "../../Assets/images/up-down 1.svg";
+import takeway from "../../Assets/images/takeway.svg";
+import del from "../../Assets/images/delete.png";
+import search from "../../Assets/images/Icon (2).svg";
 
 const pendingpagee = () => {
   return (

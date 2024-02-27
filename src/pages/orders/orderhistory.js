@@ -1,8 +1,8 @@
-import search from "../Assets/images/Icon (2).svg";
-import del from "../Assets/images/order-del.svg";
-import cash from "../Assets/images/cash-icon.svg";
-import done from "../Assets/images/Thumb up.svg";
-import takeway from "../Assets/images/takeway.svg";
+import search from "../../Assets/images/Icon (2).svg";
+import del from "../../Assets/images/order-del.svg";
+import cash from "../../Assets/images/cash-icon.svg";
+import done from "../../Assets/images/Thumb up.svg";
+import takeway from "../../Assets/images/takeway.svg";
 
 const orderpagee = () => {
   return (

@@ -1,9 +1,9 @@
-import kot6 from "../Assets/images/Group (1).svg";
-import kot3 from "../Assets/images/Group 1867.svg";
-import kot2 from "../Assets/images/Group 1873.svg";
-import kot4 from "../Assets/images/Group.svg";
-import kot1 from "../Assets/images/Mask group.svg";
-import kot5 from "../Assets/images/takeway.svg";
+import kot6 from "../../Assets/images/Group (1).svg";
+import kot3 from "../../Assets/images/Group 1867.svg";
+import kot2 from "../../Assets/images/Group 1873.svg";
+import kot4 from "../../Assets/images/Group.svg";
+import kot1 from "../../Assets/images/Mask group.svg";
+import kot5 from "../../Assets/images/takeway.svg";
 
 const kotpagee = () => {
   return (
