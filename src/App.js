@@ -11,6 +11,7 @@ import Report from "./components/Report";
 import PayinOut from "./pages/reports/PayinOut";
 import Dayclose from "./pages/reports/Dayclose";
 import Dailyreport from "./pages/reports/Dailyreport";
+import Kot from "./components/Kot";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Dinein" element={<Dinein />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customer />} />
+        <Route path="/KotKitchen" element={<Kot />} />
         <Route path="/report" element={<Report />}>
           <Route index element={<PayinOut />} />
           <Route path="dayclose" element={<Dayclose />} />

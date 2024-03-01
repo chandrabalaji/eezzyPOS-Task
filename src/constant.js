@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -6,20 +8,24 @@ import {
 } from "@apollo/client";
 import deletesvg from "./Assets/images/delete_backspace.svg";
 import { setContext } from "@apollo/client/link/context";
+import { token } from "./APIs/RESTapi";
 
 export const httpLink = createHttpLink({
   uri: "https://dev-restaurant.eezzypos.com/graphql",
 });
 
 export const authLink = setContext((_, { headers }) => {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiYW5hbmRAZWZmaWNpZW50LXdvcmtzLmNvbSIsImxvZ19zZXNzaW9uX2lkIjoyOTYsInRlcm1pbmFsX2lkIjoxMywiaXNfYnVzaW5lc3NfYWRtaW4iOiIwIiwib3V0bGV0X2lkIjoxLCJidXNpbmVzc19pZCI6MSwiaWF0IjoxNzA4OTIxODQzLCJleHAiOjE3MDg5MjkwNDN9.z3V5qSF3--tenHcvkANqZg9eJdYH1oaefxMPGl5SUxA";
+  // const userinfo = window.localStorage.getItem("userlogin");
+  // if (userinfo) {
+  // const token = JSON.parse(userinfo).token;
+  // console.log(token);
   return {
     headers: {
       ...headers,
       token: token,
     },
   };
+  // }
 });
 
 export const Client = new ApolloClient({
@@ -41,6 +47,34 @@ export const GET_CATEGORIES = gql`
     }
   }
 `;
+export const GET_PENDINGITEMS = gql`
+  query getOrders(
+    $id: ID!
+    $search: String
+    $order_no: String
+    $today: String
+    $outlet_id: ID!
+    $business_id: ID!
+    $is_online_order: String
+    $terminal_id: ID
+  ) {
+    getOrderList(
+      id: $id
+      search: $search
+      order_no: $order_no
+      today: $today
+      outlet_id: $outlet_id
+      business_id: $business_id
+      is_online_order: $is_online_order
+      terminal_id: $terminal_id
+    ) {
+      successful
+      data
+      message
+      __typename
+    }
+  }
+`;
 
 export const GET_PRODUCTS = gql`
   query getProducts(
@@ -54,6 +88,34 @@ export const GET_PRODUCTS = gql`
       business_id: $business_id
       cat_id: $cat_id
       offset: $offset
+    ) {
+      successful
+      data
+      message
+      __typename
+    }
+  }
+`;
+export const GET_KOTORDER_LIST = gql`
+  query getKotOrderList(
+    $id: ID
+    $search: String
+    $order_no: String
+    $today: String
+    $business_id: ID!
+    $outlet_id: ID!
+    $is_machine: ID!
+    $terminal_id: ID
+  ) {
+    getKotOrderList(
+      id: $id
+      search: $search
+      order_no: $order_no
+      today: $today
+      business_id: $business_id
+      outlet_id: $outlet_id
+      is_machine: $is_machine
+      terminal_id: $terminal_id
     ) {
       successful
       data

@@ -8,10 +8,7 @@ import clear from "../Assets/images/file.png";
 import kot from "../Assets/images/Vector (1).png";
 import pay from "../Assets/images/pay.png";
 import del from "../Assets/images/delete.png";
-// import {
-//   SelectedProduct,
-//   ToggleProducts,
-// } from "../features/others/productSlice";
+
 import { useDispatch, useSelector } from "react-redux";
 import { SelectedProductList } from "../Redux/reducer";
 import {
@@ -25,6 +22,7 @@ import { Link } from "react-router-dom";
 import notes from "../Assets/images/Notes.svg";
 import dropdown from "../Assets/images/Icon (1).svg";
 import icon from "../Assets/images/Icon.svg";
+import { HoldProductInsert } from "../APIs/RESTapi";
 
 const Billing = () => {
   const Dispatch = useDispatch();
@@ -35,7 +33,14 @@ const Billing = () => {
 
   useEffect(() => {
     const Price = selectItems?.reduce((acc, obj) => {
-      return Number(acc) + Number(obj?.price * obj?.available_qty);
+      return (
+        Number(acc) +
+        Number(
+          obj?.available_qty
+            ? obj?.price * obj?.available_qty
+            : obj?.price * obj.quantity
+        )
+      );
     }, 0);
     Dispatch(totalcostAction(Price.toFixed(0)));
     SetTotalPrice(Price.toFixed(0));
@@ -48,7 +53,10 @@ const Billing = () => {
   const handleDropdown = (index) => {
     SetitemMod((item) => (item === index ? null : index));
   };
-
+  console.log(selectItems);
+  const handleholditems = () => {
+    // HoldProductInsert(selectItems, TotalPrice);
+  };
   return (
     <div className="billing-container ">
       <div className="billing-head pt-3">
@@ -69,6 +77,7 @@ const Billing = () => {
               className={
                 index % 2 ? "bill-item-div p-3" : "bill-item-div black p-3"
               }
+              key={index}
             >
               <div className="bills">
                 <button onClick={() => handleDropdown(index)}>
@@ -77,10 +86,20 @@ const Billing = () => {
                 <div className="bill-item">
                   <div className="bill-itemProduct-div">
                     <p>{item?.prod_name}</p>
-                    <span>x {item?.available_qty}</span>
+                    <span>
+                      x
+                      {item?.available_qty
+                        ? item?.available_qty
+                        : item.quantity}
+                    </span>
                   </div>
                   <div className="bill-itemPrice">
-                    <span> &#163;{item?.price} </span>
+                    <span>
+                      &#163;
+                      {item?.available_qty
+                        ? item.price * item?.available_qty
+                        : item.price * item.quantity}
+                    </span>
                     <button onClick={() => handleDelete(item.id)}>
                       <img src={del} alt="" />
                     </button>
@@ -138,7 +157,7 @@ const Billing = () => {
         </div>
       </div>
       <footer className="footer">
-        <div className="btn">
+        <div className="btn" onClick={handleholditems}>
           <button id="hold">
             <img src={hand} alt="" />
           </button>

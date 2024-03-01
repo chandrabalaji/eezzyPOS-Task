@@ -6,6 +6,7 @@ import {
   totalcost,
   decrementitem,
   Cleareitem,
+  SelectPendingItem,
 } from "./Actions";
 
 const initialState = {
@@ -22,6 +23,8 @@ export default (state = initialState, { type, payload }) => {
     case AddProduct:
       return { ...state, products: payload };
     case Cleareitem:
+      return { ...state, SelectedProductList: payload };
+    case SelectPendingItem:
       return { ...state, SelectedProductList: payload };
     case Selectedproducts:
       let existingProduct = state.SelectedProductList.find(
@@ -75,6 +78,7 @@ export default (state = initialState, { type, payload }) => {
           (prod) => prod.id !== payload
         ),
       };
+
     case totalcost:
       return {
         ...state,

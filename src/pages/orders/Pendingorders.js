@@ -1,11 +1,30 @@
+import React, { useEffect, useState } from "react";
 import tick from "../../Assets/images/Group 1579.svg";
 import done from "../../Assets/images/Thumb up.svg";
 import arrow from "../../Assets/images/up-down 1.svg";
 import takeway from "../../Assets/images/takeway.svg";
 import del from "../../Assets/images/delete.png";
 import search from "../../Assets/images/Icon (2).svg";
+import { useDispatch, useSelector } from "react-redux";
+import { pendingOrdersArray } from "../../Redux/Orders/reducer";
+import { SelectedPendingAction } from "../../Redux/Actions";
+import { useNavigate } from "react-router-dom";
 
-const pendingpagee = () => {
+const Pendingorders = () => {
+  const Nav = useNavigate();
+  const Dispatch = useDispatch();
+  const [pendingordeslist, setpendingordeslist] = useState([]);
+
+  const order = useSelector(pendingOrdersArray);
+  useEffect(() => {
+    setpendingordeslist(order?.pendingOrders);
+  }, [order]);
+
+  const handleSelect = (item) => {
+    Dispatch(SelectedPendingAction(item));
+    Nav("/home");
+    // console.log(item);
+  };
   return (
     <main className="pending-div   flex flex-col   justify-between pending-order p-4 bg-dark-black w-10/12  h-screen text-white">
       <div>
@@ -30,7 +49,49 @@ const pendingpagee = () => {
             </button>
           </div>
         </div>
-        <div className="flex justify-between pe-5 ps-1">
+
+        {pendingordeslist &&
+          pendingordeslist.map((item) => (
+            <div
+              className="flex justify-between pe-5 ps-1 pb-4 pt-2 border-b-[.5px]  border-gray-600 "
+              key={item.id}
+            >
+              <div className="flex justify-between w-2/4 text-xs font-medium">
+                <div className="flex flex-col items-start space-y-2">
+                  <p>{item.order_no}</p>
+                  <div className="flex justify-center text-lite-green  space-x-2">
+                    <img src={done} alt="" />
+                    <p> {item.status}</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <p>Guest</p>
+                  <p>{item.c_ts}</p>
+                </div>
+                <div className="flex items-center text-dark-orange space-x-2 text-xs">
+                  <img src={takeway} alt="" width={15} height={15} />
+                  <p>Take Away {item.is_takeaway}</p>
+                </div>
+              </div>
+              <div className="flex justify-between w-1/4 items-center  ps-6 ">
+                <p>{item.total}</p>
+                <button className="bg-lite-black p-3 rounded ms-8">
+                  <img src={arrow} alt="" />
+                </button>
+                <button
+                  className="bg-lite-black p-3 rounded "
+                  onClick={() => handleSelect(item.order_items)}
+                >
+                  <img src={tick} alt="" width={12} height={12} />
+                </button>
+                <button className="bg-lite-black p-3 rounded">
+                  <img src={del} alt="" width={12} height={12} />
+                </button>
+              </div>
+            </div>
+          ))}
+
+        {/* <div className="flex justify-between pe-5 ps-1">
           <div className="flex justify-between w-2/4 text-xs font-medium">
             <div className="flex flex-col items-start space-y-2">
               <p>242221EPOS131</p>
@@ -60,7 +121,7 @@ const pendingpagee = () => {
               <img src={del} alt="" width={12} height={12} />
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className=" flex  items-center  justify-between px-6 mb-16 ">
         <div className="flex items-center  ">
@@ -145,4 +206,11 @@ const pendingpagee = () => {
     </main>
   );
 };
-export const pendingpage = pendingpagee();
+// order_no
+//status
+//is_takeaway
+// map order_items
+
+//
+
+export default Pendingorders;

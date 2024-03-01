@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
-import arrow from "../Assets/images/arrow.svg";
-import arrow2 from "../Assets/images/arrow2.svg";
-import { Routes, Route, useNavigate, Outlet, Link } from "react-router-dom";
+
+import { Outlet } from "react-router-dom";
 
 const Report = () => {
-  const nav = useNavigate();
-  const [active, setisactive] = useState("payinout");
-  const [paytype, setpaytype] = useState("payin");
-  const btn = ["Payin/Payout", "DayClose", "Daily Report"];
+  const [active, setisactive] = useState("Payin/Payout");
+  const btn = ["Payin/Payout", "Day Close", "Daily Report"];
   const topath = ["/report", "dayclose", "dailyreport"];
 
   const handleContentChange = (name) => {
     setisactive(name);
-  };
-  const handletypebtn = (val) => {
-    setpaytype(val);
   };
 
   return (

@@ -4,15 +4,11 @@ import percentage from "../Assets/images/percentage.png";
 import kot from "../Assets/images/Chef hat.png";
 import { useQuery, gql } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   ToggleProducts,
-//   getProducts,
-//   products,
-// } from "../features/others/productSlice";
+
 import { useEffect } from "react";
 import veg from "../Assets/images/veg.png";
 import nonveg from "../Assets/images/non-veg.png";
-
+import { Link } from "react-router-dom";
 import { GET_PRODUCTS, handleSelect } from "../constant";
 import { productAction, SelectedAction } from "../Redux/Actions";
 import { productslist } from "../Redux/reducer";
@@ -71,11 +67,11 @@ const Menulist = () => {
           </div>
         </div>
         <div>
-          <div className="KOT">
+          <Link className="KOT" to='/KotKitchen'>
             <img src={kot} alt="" />
 
             <p>KOT</p>
-          </div>
+          </Link>
         </div>
       </header>
       <div className="menulist relative">

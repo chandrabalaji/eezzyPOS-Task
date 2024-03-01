@@ -406,6 +406,20 @@ $clr-green: #10b96d;
 .scroll::-webkit-scrollbar {
   display: none;
 }
+
+.kot {
+  overflow-y: hidden;
+
+  .custome-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(350px, 360px));
+    gap: 20px;
+
+    main {
+      border-radius: 5px !important;
+    }
+  }
+}
 @media screen and (max-width: 720px) {
   .cash {
     max-width: 470px;

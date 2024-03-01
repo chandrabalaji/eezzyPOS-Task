@@ -1,14 +1,12 @@
-import React from "react";
-import { FaUserTie } from "react-icons/fa";
+import React, { useEffect } from "react";
 import { FaLock } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Logo from "../Assets/images/Group 1999.png";
 import profile from "../Assets/images/User.png";
-import { useDispatch } from "react-redux";
-import { AddUserinfo } from "../features/user/loginSlice";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { LoginAction } from "../Redux/loginAuth/Actions";
+import { usertoken } from "../APIs/RESTapi";
 
 const Login = () => {
   const Dispatch = useDispatch();
@@ -21,13 +19,9 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    // console.log(data);
-    Dispatch(
-      AddUserinfo({
-        email: data.userEmail,
-        Token: data.password,
-      })
-    );
+    usertoken(data);
+
+    // Dispatch(LoginAction(userdetails));
     navigate("/home");
   };
 
@@ -36,20 +30,20 @@ const Login = () => {
       <div className="login-div">
         <div className="logo">
           <img src={Logo} alt="" />
-          <p>
+          <p className="text-sm mb-2 mt-2">
             Providing affordable one-step payment solutions across the globe to
             support growing businesses
           </p>
         </div>
         <form className="userinfo" onSubmit={handleSubmit(onSubmit)}>
-          <h1>Login</h1>
+          <h1 className="text-lg font-medium">Login</h1>
           <div className="login-input">
             <img src={profile} alt="" />
             <input
               type="text"
               className="block"
               placeholder="Email"
-              {...register("userEmail", { required: "Email is required" })}
+              {...register("username", { required: "Email is required" })}
             />
             <p className="alert">{errors.userEmail?.message}</p>
           </div>

@@ -5,7 +5,7 @@ export const Selectedproducts = "Selectedproducts";
 export const totalcost = "totalcost";
 export const decrementitem = "decrementitem ";
 export const Cleareitem = "Cleareitem ";
-
+export const SelectPendingItem = "SelectPendingItem";
 // actions --//
 
 export const CategoryAction = (payload) => {
@@ -27,9 +27,16 @@ export const CleareAction = () => {
     payload: [],
   };
 };
+
 export const SelectedAction = (payload) => {
   return {
     type: Selectedproducts,
+    payload: payload,
+  };
+};
+export const SelectedPendingAction = (payload) => {
+  return {
+    type: SelectPendingItem,
     payload: payload,
   };
 };
@@ -51,3 +58,11 @@ export const totalcostAction = (payload) => {
     payload: payload,
   };
 };
+
+// export const PendingOrderAction = (payload) => {
+//   // console.log("pendindaction", payload);
+//   return {
+//     type: Pendingorder,
+//     payload: payload,
+//   };
+// };
