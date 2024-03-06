@@ -5,20 +5,18 @@ import {
   InMemoryCache,
   gql,
   createHttpLink,
+  DefaultOptions,
 } from "@apollo/client";
 import deletesvg from "./Assets/images/delete_backspace.svg";
 import { setContext } from "@apollo/client/link/context";
 import { token } from "./APIs/RESTapi";
+import takeway from "./Assets/images/takeway.svg";
 
 export const httpLink = createHttpLink({
   uri: "https://dev-restaurant.eezzypos.com/graphql",
 });
 
 export const authLink = setContext((_, { headers }) => {
-  // const userinfo = window.localStorage.getItem("userlogin");
-  // if (userinfo) {
-  // const token = JSON.parse(userinfo).token;
-  // console.log(token);
   return {
     headers: {
       ...headers,
@@ -34,6 +32,18 @@ export const Client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// const  defaultoptions: DefaultOptions{
+//   watchQuery:{
+//     fetchPolicy:"no-cache",
+//     errorPolicy:"ignore",
+//   }
+//   query:{
+//     fetchPolicy:"no-cache",
+//     errorpolicy:"all"
+//   }
+
+// }
+
 // query -- //
 
 export const GET_CATEGORIES = gql`
@@ -47,7 +57,7 @@ export const GET_CATEGORIES = gql`
     }
   }
 `;
-export const GET_PENDINGITEMS = gql`
+export const GET_ORDERS = gql`
   query getOrders(
     $id: ID!
     $search: String
@@ -124,6 +134,25 @@ export const GET_KOTORDER_LIST = gql`
     }
   }
 `;
+export const DELETE_KOTORDERS = gql`
+  mutation orderCancel(
+    $id: ID!
+    $reason: String
+    $type: String
+    $request_from: String
+  ) {
+    cancelOrder(
+      id: $id
+      reason: $reason
+      type: $type
+      request_from: $request_from
+    ) {
+      successful
+      message
+      __typename
+    }
+  }
+`;
 
 export const calcNumber = [
   "1",
@@ -144,3 +173,26 @@ export const calcNumber = [
 
 export const currancy = ["1", "2", "5", "10", "20", "50", "100"];
 export const paiseamt = ["1", "2", "5", "10", "20", "50"];
+
+export const handleOrderType = (obj) => {
+  if (obj) {
+    return obj.map((tab) => (
+      <div className="space-y-2 ">
+        <div>
+          <img src="" alt="" />
+          <p className="text-lite-green  font-semibold">{tab.table_name}</p>
+        </div>
+        <div className="flex font-medium">
+          <p>{tab.floor_name}</p>/<p>{tab.area_name}</p>
+        </div>
+      </div>
+    ));
+  } else {
+    return (
+      <div className="flex space-x-1 font-medium">
+        <img src={takeway} alt="" width={16} height={16} />
+        <p className="text-dark-orange font-medium">Take Away</p>
+      </div>
+    );
+  }
+};

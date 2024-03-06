@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
-  console.log("login reducer", payload);
   switch (type) {
     case UserLogin:
       return { ...state, Userinfo: payload };

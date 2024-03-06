@@ -414,10 +414,16 @@ $clr-green: #10b96d;
     display: grid;
     grid-template-columns: repeat(4, minmax(350px, 360px));
     gap: 20px;
-
+    row-gap: 45px !important;
     main {
       border-radius: 5px !important;
     }
+  }
+  .custome-sub {
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
   }
 }
 @media screen and (max-width: 720px) {

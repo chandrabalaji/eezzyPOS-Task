@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
-import { orderpage } from "../pages/orders/orderhistory";
+import { orderHistory } from "../pages/orders/orderhistory";
 import { onlineOrderPage } from "../pages/orders/onlineorder";
 import { splitpage } from "../pages/orders/split";
 import Pendingorders from "../pages/orders/Pendingorders";
-import { kotpage } from "../pages/orders/kot";
 import Sidebar from "./Sidebar";
 import { useQuery } from "@apollo/client";
-import { GET_PENDINGITEMS } from "../constant";
+import { GET_ORDERS } from "../constant";
 import { PendingOrderAction } from "../Redux/Orders/Action";
 import { useDispatch, useSelector } from "react-redux";
+import { pendingOrdersArray } from "../Redux/Orders/reducer";
+import { kotpage } from "../pages/orders/kot";
 
 const Orders = () => {
   const Dispatch = useDispatch();
   const [content, setcontent] = useState(null);
   const [btnactive, setbtnactive] = useState("Order History");
-  const [pendingOrder, SetpendingOrder] = useState([]);
+  const GetOrderList = useSelector(pendingOrdersArray);
 
-  // const prder = useSelector(categorys);
-  // console.log("order component", prder);
   const handleContentChange = (contentName) => {
     setbtnactive(contentName);
   };
 
-  const { data, error, loading } = useQuery(GET_PENDINGITEMS, {
+  const { data, error, loading } = useQuery(GET_ORDERS, {
     variables: {
       business_id: "1",
       id: "",
@@ -34,15 +33,15 @@ const Orders = () => {
       today: "",
     },
   });
-  // SetpendingOrder(data?.getOrderList?.data);
-  // console.log(" order", data && data?.getOrderList?.data);
+
   useEffect(() => {
     if (data && data?.getOrderList?.data) {
       Dispatch(PendingOrderAction(data?.getOrderList?.data));
     }
   }, [data]);
 
-  // SetpendingOrder(data && data?.getOrderList?.data);
+  const orderpage = orderHistory(GetOrderList);
+  const kotlist = kotpage(GetOrderList);
   useEffect(() => {
     switch (btnactive) {
       case "Order History":
@@ -55,7 +54,7 @@ const Orders = () => {
         setcontent(<Pendingorders />);
         break;
       case "KOT Orders":
-        setcontent(kotpage);
+        setcontent(kotlist);
         break;
       case "Online Orders":
         setcontent(onlineOrderPage);

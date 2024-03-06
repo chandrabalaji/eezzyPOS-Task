@@ -5,7 +5,7 @@ import use from "../Assets/images/User.png";
 import hand from "../Assets/images/hand 1.png";
 import pending from "../Assets/images/pending.png";
 import clear from "../Assets/images/file.png";
-import kot from "../Assets/images/Vector (1).png";
+import kotimg from "../Assets/images/Vector (1).png";
 import pay from "../Assets/images/pay.png";
 import del from "../Assets/images/delete.png";
 
@@ -25,6 +25,8 @@ import icon from "../Assets/images/Icon.svg";
 import { HoldProductInsert } from "../APIs/RESTapi";
 
 const Billing = () => {
+  const Draft = "Draft";
+  const kot = "kot";
   const Dispatch = useDispatch();
   const selectItemsreducer = useSelector(SelectedProductList);
   const selectItems = selectItemsreducer.SelectedProductList;
@@ -53,9 +55,11 @@ const Billing = () => {
   const handleDropdown = (index) => {
     SetitemMod((item) => (item === index ? null : index));
   };
-  console.log(selectItems);
+  const handleSendKot = () => {
+    HoldProductInsert(selectItems, TotalPrice, kot);
+  };
   const handleholditems = () => {
-    // HoldProductInsert(selectItems, TotalPrice);
+    HoldProductInsert(selectItems, TotalPrice, Draft);
   };
   return (
     <div className="billing-container ">
@@ -177,8 +181,8 @@ const Billing = () => {
         </div>
 
         <div className="btn">
-          <button id="send">
-            <img src={kot} alt="" />
+          <button id="send" onClick={handleSendKot}>
+            <img src={kotimg} alt="" />
           </button>
           <p>Send Kot</p>
         </div>

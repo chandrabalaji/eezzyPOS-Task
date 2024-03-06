@@ -6,8 +6,6 @@ export const Axios = axios.create({
 });
 
 export const usertoken = (userinfo) => {
-  // const userinfo = store.getState().Userinfo;
-  console.log(userinfo);
   var ciphertext = AES.encrypt(
     JSON.stringify(userinfo.password),
     "EWEPOS@2021"
@@ -32,7 +30,6 @@ async function Postrequest(val) {
 
 let userinfo = window.localStorage.getItem("userlogin");
 export const token = userinfo ? JSON.parse(userinfo).token : null;
-// console.log(token);
 
 export const getAPICall = async (url, method, params) => {
   Axios({
@@ -60,7 +57,7 @@ export const PostAPICall = async (url, method, params) => {
   });
 };
 
-export const HoldProductInsert = async (items, TotalPrice) => {
+export const HoldProductInsert = async (items, TotalPrice, status) => {
   const payload = {
     balance: 0,
     biller_id: "2",
@@ -69,48 +66,48 @@ export const HoldProductInsert = async (items, TotalPrice) => {
     coupon_discount: 0,
     customer_id: 0,
     discount: "0",
+    given_amount: 0,
     is_takeaway: 1,
     kotstatus: 4,
-    log_session_id: "362",
-    max_order_no: 8,
+    log_session_id: "83",
+    max_order_no: 1,
     miscellaneous: 0,
     miscellaneous_items: "[]",
-    order_date: "2024-02-29",
+    order_date: "2024-03-05",
     order_item: items,
     order_no: "1",
-    outlet_id: "1",
-    status: "Draft",
-    sub_total: TotalPrice,
-    tax: "0",
-    total: TotalPrice,
-    order_time: "18:00:13",
+    order_tax: [
+      { tax_name: "VAT", tax_pct: "3", tax_id: "1", tax_amount: 1.08 },
+    ], // *
+    order_time: "09:55:52",
     order_type: 0,
+    outlet_id: "1", // *
     p_type: 0,
     redeem_points: 0,
     redeem_value: 0,
     split_bill_count: 0,
+    status: status, // *
+    sub_total: TotalPrice,
     table_id: 0,
-    taxper: 8,
+    tax: "1.08",
+    taxper: 3,
     terminal_id: "45",
     tip_amount: "0",
     tip_handling: "null",
     tip_percentage: "0.00",
+    total: TotalPrice,
     transaction_no: "",
     type: "coupon",
   };
 
   try {
-    const res = await PostAPICall("/api/v1/order/insert", "POST", payload);
-    console.log(res);
+    const res = await PostAPICall(
+      "/api/v1/order/insert",
+      "POST",
+      JSON.stringify(payload)
+    );
+    // console.log(res);
   } catch (error) {
     console.log(error.message);
   }
 };
-
-// export const handleKOT = async (items) => {
-//   try {
-//     const res = await PostAPICall("/api/v1/order/insert", "POST", payload);
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };

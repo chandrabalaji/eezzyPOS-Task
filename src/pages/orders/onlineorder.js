@@ -1,4 +1,4 @@
-const onlineOrderPagee = () => {
+export const onlineOrderPage = (Orders) => {
   return (
     <main className="orderOnlinePage flex flex-col h-screen bg-dark-black w-10/12">
       <div className="text-white mt-6 px-10 font-medium">
@@ -100,4 +100,3 @@ const onlineOrderPagee = () => {
     </main>
   );
 };
-export const onlineOrderPage = onlineOrderPagee();

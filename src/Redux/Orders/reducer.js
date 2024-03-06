@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
-  console.log(payload);
   switch (type) {
     case Pendingorder:
       return { ...state, pendingOrders: payload };

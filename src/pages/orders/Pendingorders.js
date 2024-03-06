@@ -51,77 +51,47 @@ const Pendingorders = () => {
         </div>
 
         {pendingordeslist &&
-          pendingordeslist.map((item) => (
-            <div
-              className="flex justify-between pe-5 ps-1 pb-4 pt-2 border-b-[.5px]  border-gray-600 "
-              key={item.id}
-            >
-              <div className="flex justify-between w-2/4 text-xs font-medium">
-                <div className="flex flex-col items-start space-y-2">
-                  <p>{item.order_no}</p>
-                  <div className="flex justify-center text-lite-green  space-x-2">
-                    <img src={done} alt="" />
-                    <p> {item.status}</p>
+          pendingordeslist.map((item) =>
+            item.status === "Draft" ? (
+              <div
+                className="flex justify-between pe-5 ps-1 pb-4 pt-2 border-b-[.5px]  border-gray-600 "
+                key={item.id}
+              >
+                <div className="flex justify-between w-2/4 text-xs font-medium">
+                  <div className="flex flex-col items-start space-y-2">
+                    <p>{item.order_no}</p>
+                    <div className="flex justify-center text-lite-green  space-x-2">
+                      <img src={done} alt="" />
+                      <p> {item.status}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <p>Guest</p>
+                    <p>{item.c_ts}</p>
+                  </div>
+                  <div className="flex items-center text-dark-orange space-x-2 text-xs">
+                    <img src={takeway} alt="" width={15} height={15} />
+                    <p>Take Away {item.is_takeaway}</p>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <p>Guest</p>
-                  <p>{item.c_ts}</p>
+                <div className="flex justify-between w-1/4 items-center  ps-6 ">
+                  <p>{item.total}</p>
+                  <button className="bg-lite-black p-3 rounded ms-8">
+                    <img src={arrow} alt="" />
+                  </button>
+                  <button
+                    className="bg-lite-black p-3 rounded "
+                    onClick={() => handleSelect(item.order_items)}
+                  >
+                    <img src={tick} alt="" width={12} height={12} />
+                  </button>
+                  <button className="bg-lite-black p-3 rounded">
+                    <img src={del} alt="" width={12} height={12} />
+                  </button>
                 </div>
-                <div className="flex items-center text-dark-orange space-x-2 text-xs">
-                  <img src={takeway} alt="" width={15} height={15} />
-                  <p>Take Away {item.is_takeaway}</p>
-                </div>
               </div>
-              <div className="flex justify-between w-1/4 items-center  ps-6 ">
-                <p>{item.total}</p>
-                <button className="bg-lite-black p-3 rounded ms-8">
-                  <img src={arrow} alt="" />
-                </button>
-                <button
-                  className="bg-lite-black p-3 rounded "
-                  onClick={() => handleSelect(item.order_items)}
-                >
-                  <img src={tick} alt="" width={12} height={12} />
-                </button>
-                <button className="bg-lite-black p-3 rounded">
-                  <img src={del} alt="" width={12} height={12} />
-                </button>
-              </div>
-            </div>
-          ))}
-
-        {/* <div className="flex justify-between pe-5 ps-1">
-          <div className="flex justify-between w-2/4 text-xs font-medium">
-            <div className="flex flex-col items-start space-y-2">
-              <p>242221EPOS131</p>
-              <div className="flex justify-center text-lite-green  space-x-2">
-                <img src={done} alt="" />
-                <p>Draft</p>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <p>Guest</p>
-              <p>22-02-2024</p>
-            </div>
-            <div className="flex items-center text-dark-orange space-x-2 text-xs">
-              <img src={takeway} alt="" width={15} height={15} />
-              <p>Take Away</p>
-            </div>
-          </div>
-          <div className="flex justify-between w-1/4 items-center  ps-6 ">
-            <p>48.72</p>
-            <button className="bg-lite-black p-3 rounded ms-8">
-              <img src={arrow} alt="" />
-            </button>
-            <button className="bg-lite-black p-3 rounded ">
-              <img src={tick} alt="" width={12} height={12} />
-            </button>
-            <button className="bg-lite-black p-3 rounded">
-              <img src={del} alt="" width={12} height={12} />
-            </button>
-          </div>
-        </div> */}
+            ) : null
+          )}
       </div>
       <div className=" flex  items-center  justify-between px-6 mb-16 ">
         <div className="flex items-center  ">
@@ -206,11 +176,5 @@ const Pendingorders = () => {
     </main>
   );
 };
-// order_no
-//status
-//is_takeaway
-// map order_items
-
-//
 
 export default Pendingorders;
