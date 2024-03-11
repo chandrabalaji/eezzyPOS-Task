@@ -56,14 +56,14 @@ const Customer = () => {
   ];
   // console.log(Customer);
   return (
-    <div className="customer  flex">
+    <div className="customer h-screen  box-border flex overflow-hidden">
       <Sidebar
         Sidebarbtn={btn}
         handleContentChange={handleCustomerinfo}
         btnactive={Customer}
       />
-      <main className=" bg-dark-black w-10/12  h-screen text-white">
-        <header className="  pt-6 ps-5">
+      <main className=" bg-dark-black w-10/12  h-full  text-white">
+        <header className="  pt-6 ps-5 h-1/6">
           <div className="mb-6">
             <p>Customer</p>
           </div>
@@ -202,7 +202,7 @@ const Customer = () => {
             </Sheet>
           </div>
         </header>
-        <section className="mt-4 ">
+        <section className="scroll mt-4   h-5/6  overflow-scroll  pb-20 ">
           {Customer === "All Customer" ? (
             <>
               {BillingCustomer &&

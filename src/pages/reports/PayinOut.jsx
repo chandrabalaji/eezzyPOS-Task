@@ -123,6 +123,8 @@ const PayinOut = () => {
               id=""
               className="text-sm font-medium px-3 py-2 rounded-[4px]  bg-dark-black mt-2 end text-end"
               value={Stratingamt}
+              // onchange
+              readOnly
             />
             <div className="flex justify-between items-center">
               <label htmlFor="" className="text-sm flex items-center">

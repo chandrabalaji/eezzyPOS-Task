@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Createbutton from "./Createbutton";
+import Createbutton from "./createbutton";
 import Menulist from "./Menulist";
 import Billing from "./Billing";
 import Footer from "./Footer";
@@ -7,7 +7,7 @@ import log from "../Assets/images/Group 370.png";
 import heart from "../Assets/images/heart 1.png";
 import vr from "../Assets/images/rectangle's.png";
 import { useDispatch, useSelector } from "react-redux";
-
+import Createbutton from "./createbutton";
 import { GET_CATEGORIES } from "../constant";
 import { CategoryAction } from "../Redux/Actions";
 import { categorys } from "../Redux/reducer";
@@ -44,15 +44,16 @@ const Category = () => {
               <img src={heart} alt="" />
             </div>
           </div>
-          <div className="scroll  category  h-[90vh] overflow-y-scroll w-full">
+          <div className="scroll  category pb-20 h-[90vh] overflow-y-scroll w-full">
             {AllCategory &&
               AllCategory?.map((cat) => {
                 return (
-                  <Createbutton
-                    name={cat.cat_name}
-                    color={cat.color_code}
-                    key={cat.id}
-                  />
+                  // <Createbutton
+                  //   name={cat.cat_name}
+                  //   color={cat.color_code}
+                  //   key={cat.id}
+                  // />
+                  <Createbutton />
                 );
               })}
           </div>

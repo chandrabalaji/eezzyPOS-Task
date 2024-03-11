@@ -91,15 +91,15 @@ const Dinein = () => {
   }, [TakeOrder]);
   return (
     <div className="dinein    box-border text-white bg-dark-black">
-      <div className=" ps-10 md:w-screen box-border  pt-5 w-1/2">
+      <div className="scroll ps-10 pb-24 md:w-screen box-border  pt-5  h-dvh  overflow-x-hidden ">
         {Tabledetails &&
           Tabledetails.map((floor, index) => (
-            <div className=" ml-3 w-1/3" key={index}>
+            <div className=" ml-3 " key={index}>
               <p className="text-lg font-medium">{floor.floor_name}</p>
               {floor.area.map((area) => (
-                <div className="p-3 mt-2">
+                <div className=" p-3 mt-2 w-screen">
                   <p className="mb-4">{area.area_name}</p>
-                  <div className="flex space-x-4 justify-between">
+                  <div className="scroll pe-20 flex space-x-4 justify-between w-full overflow-y-scroll">
                     {area.table.map((table, index) => (
                       <Link
                         className=" rounded-xl hover:bg-sky-400  cursor-pointer  duration-300 ease-linear  font-medium text-white  px-2 flex justify-center items-center bg-lite-black  min-w-36  py-0 max-h-24 min-h-24"

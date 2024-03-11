@@ -2,7 +2,7 @@ import { AES } from "crypto-js";
 import axios from "axios";
 //"http://192.168.29.129:8003"
 export const Axios = axios.create({
-  baseURL: "https://dev-restaurant.eezzypos.com",
+  baseURL: "http://192.168.29.129:8004",
 });
 
 export const usertoken = (userinfo) => {

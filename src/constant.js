@@ -13,7 +13,7 @@ import takeway from "./Assets/images/takeway.svg";
 
 //http://192.168.29.129:8003/graphql
 export const httpLink = createHttpLink({
-  uri: "https://dev-restaurant.eezzypos.com/graphql",
+  uri: "http://192.168.29.129:8004/graphql",
 });
 
 export const authLink = setContext((_, { headers }) => {
@@ -26,11 +26,10 @@ export const authLink = setContext((_, { headers }) => {
   // }
 });
 
-
 export const Client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  defaultOptions: {query:{fetchPolicy:"network-only"}},
+  defaultOptions: { query: { fetchPolicy: "network-only" } },
 });
 
 // query -- //

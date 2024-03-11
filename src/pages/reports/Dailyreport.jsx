@@ -34,7 +34,7 @@ const Dailyreport = () => {
     fn();
     Settransacation(trnsList.transList);
   }, []);
-  console.log(transacation);
+  // console.log(transacation);
   return (
     <main className="bg-dark-black w-10/12">
       <div className="grid grid-cols-2 grid-rows-2 gap-3 h-[600px] p-4 text-white">
