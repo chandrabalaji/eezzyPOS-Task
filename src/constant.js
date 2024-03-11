@@ -5,13 +5,13 @@ import {
   InMemoryCache,
   gql,
   createHttpLink,
-  DefaultOptions,
 } from "@apollo/client";
 import deletesvg from "./Assets/images/delete_backspace.svg";
 import { setContext } from "@apollo/client/link/context";
 import { token } from "./APIs/RESTapi";
 import takeway from "./Assets/images/takeway.svg";
 
+//http://192.168.29.129:8003/graphql
 export const httpLink = createHttpLink({
   uri: "https://dev-restaurant.eezzypos.com/graphql",
 });
@@ -26,23 +26,12 @@ export const authLink = setContext((_, { headers }) => {
   // }
 });
 
+
 export const Client = new ApolloClient({
   link: authLink.concat(httpLink),
-
   cache: new InMemoryCache(),
+  defaultOptions: {query:{fetchPolicy:"network-only"}},
 });
-
-// const  defaultoptions: DefaultOptions{
-//   watchQuery:{
-//     fetchPolicy:"no-cache",
-//     errorPolicy:"ignore",
-//   }
-//   query:{
-//     fetchPolicy:"no-cache",
-//     errorpolicy:"all"
-//   }
-
-// }
 
 // query -- //
 
@@ -149,6 +138,144 @@ export const DELETE_KOTORDERS = gql`
     ) {
       successful
       message
+      __typename
+    }
+  }
+`;
+export const GET_ALL_POSSETTING = gql`
+  query getAllPossettings(
+    $outlet_id: ID!
+    $business_id: ID!
+    $biller_id: ID!
+    $id: ID!
+    $terminal_id: ID
+  ) {
+    getAllPossettings(
+      outlet_id: $outlet_id
+      business_id: $business_id
+      biller_id: $biller_id
+      id: $id
+      terminal_id: $terminal_id
+    ) {
+      successful
+      message
+      data
+      __typename
+    }
+  }
+`;
+export const POST_POSSETTING = gql`
+  mutation createPossettings(
+    $transaction_name: String!
+    $amount: Float!
+    $type: String!
+    $outlet_id: ID!
+    $business_id: ID!
+    $biller_id: ID!
+    $is_all_day: String
+    $terminal_id: ID
+  ) {
+    createPossettings(
+      transaction_name: $transaction_name
+      amount: $amount
+      type: $type
+      outlet_id: $outlet_id
+      business_id: $business_id
+      biller_id: $biller_id
+      is_all_day: $is_all_day
+      terminal_id: $terminal_id
+    ) {
+      successful
+      message
+      insertId
+      __typename
+    }
+  }
+`;
+export const GET_TRANSCATIONS = gql`
+  query transactionSummary(
+    $outlet_id: ID!
+    $business_id: ID!
+    $terminal_id: ID
+  ) {
+    transactionSummary(
+      outlet_id: $outlet_id
+      business_id: $business_id
+      terminal_id: $terminal_id
+    ) {
+      successful
+      data
+      message
+      __typename
+    }
+  }
+`;
+export const GET_SALES_SUMMARY = gql`
+  query salesSummary($outlet_id: ID!, $business_id: ID!, $terminal_id: ID) {
+    salesSummary(
+      outlet_id: $outlet_id
+      business_id: $business_id
+      terminal_id: $terminal_id
+    ) {
+      successful
+      data
+      message
+      __typename
+    }
+  }
+`;
+export const GET_SALESBY_CATEGORY = gql`
+  query salesByCategory($outlet_id: ID!, $business_id: ID!, $terminal_id: ID) {
+    salesByCategory(
+      outlet_id: $outlet_id
+      business_id: $business_id
+      terminal_id: $terminal_id
+    ) {
+      successful
+      data
+      message
+      __typename
+    }
+  }
+`;
+
+export const GET_ALLCUSTOMER = gql`
+  query getAllCustomer(
+    $id: ID!
+    $search: String
+    $area: String
+    $today: String
+    $outlet_id: ID!
+    $business_id: ID!
+    $is_favorite: String
+  ) {
+    getBillingCustomers(
+      id: $id
+      search: $search
+      area: $area
+      today: $today
+      outlet_id: $outlet_id
+      business_id: $business_id
+      is_favorite: $is_favorite
+    ) {
+      id
+      email
+      first_name
+      last_name
+      mobile
+      address1
+      address2
+      zipcode
+      tax_no
+      anniversaary
+      is_active
+      is_favorite
+      do_not_disturb
+      c_ts
+      profile_img
+      dob
+      area
+      loyalty_points
       __typename
     }
   }

@@ -1,6 +1,6 @@
 import { AES } from "crypto-js";
 import axios from "axios";
-
+//"http://192.168.29.129:8003"
 export const Axios = axios.create({
   baseURL: "https://dev-restaurant.eezzypos.com",
 });
@@ -32,16 +32,21 @@ let userinfo = window.localStorage.getItem("userlogin");
 export const token = userinfo ? JSON.parse(userinfo).token : null;
 
 export const getAPICall = async (url, method, params) => {
-  Axios({
-    method: method,
-    url,
-    params,
-    headers: {
-      "content-type": "application/json",
-      Accept: "application/json",
-      token,
-    },
-  });
+  try {
+    const res = Axios({
+      method: method,
+      url,
+      params,
+      headers: {
+        "content-type": "application/json",
+        Accept: "application/json",
+        token,
+      },
+    });
+    return (await res).data;
+  } catch (error) {
+    return error.message;
+  }
 };
 
 export const PostAPICall = async (url, method, params) => {
@@ -58,6 +63,8 @@ export const PostAPICall = async (url, method, params) => {
 };
 
 export const HoldProductInsert = async (items, TotalPrice, status) => {
+  items.map((it) => console.log(it));
+  const moditem = { ...items };
   const payload = {
     balance: 0,
     biller_id: "2",

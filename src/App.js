@@ -29,6 +29,7 @@ function App() {
           <Route path="dayclose" element={<Dayclose />} />
           <Route path="DailyReport" element={<Dailyreport />} />
         </Route>
+        <Route path="/Dinein/:id" element={<Category />} />
       </Routes>
     </div>
   );

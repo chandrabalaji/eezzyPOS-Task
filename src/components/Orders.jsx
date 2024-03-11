@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import { orderHistory } from "../pages/orders/orderhistory";
 import { onlineOrderPage } from "../pages/orders/onlineorder";
 import { splitpage } from "../pages/orders/split";
-import Pendingorders from "../pages/orders/Pendingorders";
+import { Pendingorders } from "../pages/orders";
 import Sidebar from "./Sidebar";
 import { useQuery } from "@apollo/client";
 import { GET_ORDERS } from "../constant";

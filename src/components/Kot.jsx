@@ -166,9 +166,12 @@ const Kot = () => {
       <div>{popupcontent}</div>
       <div className="h-[600px] custome-grid  overflow-y-scroll scroll px-3 mt-3 py-3">
         {Kotorderlist &&
-          Kotorderlist.map((kot) =>
+          Kotorderlist.map((kot, index) =>
             kot.kotstatus !== "4" ? (
-              <main className="bg-lite-black rounded w-[360px] h-[430px]  ">
+              <main
+                className="bg-lite-black rounded w-[360px] h-[430px] "
+                key={index}
+              >
                 <header className="relative bg-dark-orange p-2 flex justify-between text-xs">
                   <div>
                     <img src="" alt="" />

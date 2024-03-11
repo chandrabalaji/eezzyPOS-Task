@@ -1,8 +1,9 @@
-import { Pendingorder, Kotorder } from "./Action";
+import { Pendingorder, Kotorder, Transaction } from "./Action";
 
 const initialState = {
   pendingOrders: [],
   KotOrders: [],
+  transList: [],
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -11,6 +12,8 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, pendingOrders: payload };
     case Kotorder:
       return { ...state, KotOrders: payload };
+    case Transaction:
+      return { ...state, transList: payload };
 
     default:
       return state;

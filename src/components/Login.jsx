@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../Redux/loginAuth/Actions";
 import { usertoken } from "../APIs/RESTapi";
 
+
 const Login = () => {
   const Dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ const Login = () => {
       <div className="login-div">
         <div className="logo">
           <img src={Logo} alt="" />
-          <p className="text-sm mb-2 mt-2">
+          <p className="text-sm mb-1 mt-2 text-center">
             Providing affordable one-step payment solutions across the globe to
             support growing businesses
           </p>

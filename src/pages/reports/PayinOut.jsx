@@ -1,24 +1,67 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import arrow from "../../Assets/images/arrow.svg";
 import arrow2 from "../../Assets/images/arrow2.svg";
 import del from "../../Assets/images/delete.png";
+import { Get_query, Post_query } from "../../query";
+import { GET_ALL_POSSETTING, POST_POSSETTING } from "../../constant";
 
 const PayinOut = () => {
-  const [paytype, setpaytype] = useState("payin");
+  const [type, settype] = useState("Payin");
   const [name, setname] = useState("");
   const [amount, setamount] = useState(0);
+  const [Stratingamt, setStartingamt] = useState(0);
   const [Transactions, setaTransactions] = useState([]);
 
-  const handletypebtn = (val) => {
-    setpaytype(val);
+  const variables = {
+    biller_id: 2,
+    business_id: 1,
+    id: "",
+    outlet_id: 1,
+    terminal_id: "45",
   };
 
+  const fn = async () => {
+    const { data } = await Get_query(GET_ALL_POSSETTING, variables);
+    setaTransactions(data?.getAllPossettings.data);
+  };
+  useEffect(() => {
+    fn();
+  }, []);
+
+  // set starting cash
+  useEffect(() => {
+    Transactions?.forEach((tr) => {
+      if (tr.type === "Start") {
+        setStartingamt(tr.amount);
+      }
+    });
+  }, [Transactions]);
+
+  const handletypebtn = (val) => {
+    settype(val);
+  };
+  // console.log(Transactions);
   const handledelete = (val) => {
-    const filtertrans = Transactions.filter((trns) => trns.name !== val.name);
+    const filtertrans = Transactions.filter((trns) =>
+      trns.name ? trns.name !== val : trns.transaction_name !== val
+    );
     setaTransactions(filtertrans);
   };
-  const handlepayment = () => {
-    const details = { name, amount, paytype };
+  const handlepayment = async () => {
+    const variables = {
+      amount: Number(amount),
+      biller_id: 2,
+      business_id: 1,
+      is_all_day: "0",
+      outlet_id: 1,
+      terminal_id: "45",
+      transaction_name: name,
+      type: type,
+    };
+
+    const post = await Post_query(POST_POSSETTING, variables);
+    // console.log(post);
+    const details = { name, amount, type };
     setaTransactions((trns) => trns.concat(details));
     setname("");
     setamount("");
@@ -39,12 +82,17 @@ const PayinOut = () => {
           </div>
           <div className="mt-2 px-3">
             {Transactions &&
-              Transactions.map((tr) => {
-                return (
-                  <div className="flex justify-between text-sm font-medium py-2 px-1 border-b-[.5px] border-gray-500">
-                    <p className="text-xs">{tr.name}</p>
-                    <div className="flex space-x-28 ">
-                      <p>{tr.amount}</p>
+              Transactions.map((tr, index) => (
+                <div
+                  className="flex justify-between text-sm font-medium py-2 px-1 border-b-[.7px] border-gray-600"
+                  key={index}
+                >
+                  <p className="text-xs">
+                    {tr.transaction_name ? tr.transaction_name : tr.name}
+                  </p>
+                  <div className="flex space-x-28 ">
+                    <p>{tr.amount}</p>
+                    {tr.type !== "Start" ? (
                       <div className="flex items-center justify-center space-x-3">
                         <img
                           src={del}
@@ -54,16 +102,16 @@ const PayinOut = () => {
                           onClick={() => handledelete(tr)}
                         />
                         <img
-                          src={tr.paytype === "payin" ? arrow2 : arrow}
+                          src={tr.type === "Payin" ? arrow2 : arrow}
                           alt=""
                           width={14}
                           height={14}
                         />
                       </div>
-                    </div>
+                    ) : null}
                   </div>
-                );
-              })}
+                </div>
+              ))}
           </div>
         </div>
         <div className="custome-border bg-lite-black text-white w-1/2 p-4 ">
@@ -73,7 +121,8 @@ const PayinOut = () => {
               type="number"
               name=""
               id=""
-              className="text-md font-medium px-3 py-2 rounded-[4px]  bg-dark-black mt-2"
+              className="text-sm font-medium px-3 py-2 rounded-[4px]  bg-dark-black mt-2 end text-end"
+              value={Stratingamt}
             />
             <div className="flex justify-between items-center">
               <label htmlFor="" className="text-sm flex items-center">
@@ -90,16 +139,16 @@ const PayinOut = () => {
             <div className="flex mt-4 space-x-2">
               <button
                 className={`flex items-center justify-between ${
-                  paytype === "payin" ? "bg-blue-500" : "bg-gray-500"
+                  type === "payin" ? "bg-blue-500" : "bg-gray-500"
                 } w-1/2  rounded-[5px] px-5 py-2 text-sm font-medium`}
-                onClick={() => handletypebtn("payin")}
+                onClick={() => handletypebtn("Payin")}
               >
                 PayIn
                 <img src={arrow2} alt="" width={17} height={17} />
               </button>
               <button
                 className={`flex items-center justify-between ${
-                  paytype === "payout" ? "bg-blue-500" : "bg-gray-500"
+                  type === "payout" ? "bg-blue-500" : "bg-gray-500"
                 } w-1/2  rounded-[5px] px-5 py-2 text-sm font-medium`}
                 onClick={() => handletypebtn("payout")}
               >
@@ -112,10 +161,10 @@ const PayinOut = () => {
 
               <span
                 className={
-                  paytype === "payin" ? "text-lite-green" : "text-red-600"
+                  type === "payin" ? "text-lite-green" : "text-red-600"
                 }
               >
-                {paytype}
+                {type}
               </span>
               <div className="grid gap-y-1">
                 <label htmlFor="">Transaction Name</label>

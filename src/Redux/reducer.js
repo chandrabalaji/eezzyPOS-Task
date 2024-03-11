@@ -39,19 +39,30 @@ export default (state = initialState, { type, payload }) => {
             if (pro.id === existingProduct.id) {
               return {
                 ...pro,
-                available_qty: pro.available_qty + 1,
+                quantity: ++pro.quantity,
+                totalPrice: pro.totalPrice * pro.quantity,
               };
             }
             return pro;
           }),
         };
       } else {
+        // console.log(payload.totalPrice);
         // If product doesn't exist, add it with available_qty set to 1
         return {
           ...state,
           SelectedProductList: [
             ...state.SelectedProductList,
-            { ...payload, available_qty: 1 },
+            {
+              ...payload,
+              quantity: 1,
+              totalPrice: payload.price,
+              prod_id: payload.id,
+              prepared_count: 0,
+              addOnArray: "",
+              is_combo: 0,
+              variationPrice: 0,
+            },
           ],
         };
       }

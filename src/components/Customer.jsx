@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import search from "../Assets/images/Icon (2).svg";
 import Footer from "./Footer";
@@ -18,9 +18,32 @@ import {
   SheetTitle,
   SheetDescription,
 } from "./ui/sheet";
+import { Get_query } from "../query";
+import { GET_ALLCUSTOMER } from "../constant";
 
 const Customer = () => {
   const [Customer, setCustomer] = useState("All Customer");
+
+  const [BillingCustomer, SetBillingCustomer] = useState([]);
+
+  const variables = {
+    area: "",
+    business_id: "1",
+    id: "",
+    is_favorite: "0",
+    outlet_id: "1",
+    search: "",
+    today: "",
+  };
+
+  const queryCall = async () => {
+    const { data } = await Get_query(GET_ALLCUSTOMER, variables);
+    console.log(data);
+    SetBillingCustomer(data?.getBillingCustomers);
+  };
+  useEffect(() => {
+    queryCall();
+  }, []);
 
   const handleCustomerinfo = (name) => {
     setCustomer(name);
@@ -31,7 +54,7 @@ const Customer = () => {
     "Old Customer",
     "Favourite Customer",
   ];
-
+  // console.log(Customer);
   return (
     <div className="customer  flex">
       <Sidebar
@@ -181,32 +204,41 @@ const Customer = () => {
         </header>
         <section className="mt-4 ">
           {Customer === "All Customer" ? (
-            <div className=" flex justify-between items-center px-10 ps-6 pe-20 text-xs font-medium mb-2 border-b-1">
-              <div className="flex space-x-4">
-                <img src={userimg} alt="" className="rounded-md" />
-                <div>
-                  <p>Balaji</p>
-                  <p>9876543210</p>
-                </div>
-              </div>
-              <div>
-                <p>Balaji01@gmail.com</p>
-              </div>
-              <div>
-                <p>60001</p>
-              </div>
-              <div className="flex items-center space-x-5 ps-6 ">
-                <button className="bg-lite-black p-3 rounded ">
-                  <img src={tick} alt="" width={12} height={12} />
-                </button>
-                <button className="bg-lite-black p-3 rounded ">
-                  <img src={pencile} alt="" width={12} height={12} />
-                </button>
-                <button className="bg-lite-black p-3 rounded">
-                  <img src={del} alt="" width={12} height={12} />
-                </button>
-              </div>
-            </div>
+            <>
+              {BillingCustomer &&
+                BillingCustomer.map((cus) => (
+                  <div className=" flex justify-between items-center px-10 ps-6 pe-20 text-xs font-medium mb-2 border-b-1">
+                    <div className="flex space-x-4 w-36">
+                      <img
+                        src={cus.profile_img ? cus.profile_img : userimg}
+                        alt=""
+                        className=" w-10 h-10 rounded"
+                      />
+                      <div>
+                        <p>{cus.first_name}</p>
+                        <p>{cus.mobile}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="w-56">{cus.email}</p>
+                    </div>
+                    <div>
+                      <p>{cus.zipcode}</p>
+                    </div>
+                    <div className="flex items-center space-x-5 ps-6 ">
+                      <button className="bg-lite-black p-3 rounded ">
+                        <img src={tick} alt="" width={12} height={12} />
+                      </button>
+                      <button className="bg-lite-black p-3 rounded ">
+                        <img src={pencile} alt="" width={12} height={12} />
+                      </button>
+                      <button className="bg-lite-black p-3 rounded">
+                        <img src={del} alt="" width={12} height={12} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+            </>
           ) : (
             <div className="flex flex-col justify-center items-center space-y-4 mt-32">
               <img src={cus} alt="" width={100} height={100} />

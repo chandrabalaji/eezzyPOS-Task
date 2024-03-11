@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import wifi from "../Assets/images/Icon.png";
 import cus from "../Assets/images/customer.svg";
 import use from "../Assets/images/User.png";
@@ -18,7 +18,7 @@ import {
   DecrementAction,
   CleareAction,
 } from "../Redux/Actions";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import notes from "../Assets/images/Notes.svg";
 import dropdown from "../Assets/images/Icon (1).svg";
 import icon from "../Assets/images/Icon.svg";
@@ -28,6 +28,7 @@ const Billing = () => {
   const Draft = "Draft";
   const kot = "kot";
   const Dispatch = useDispatch();
+  const location = useLocation();
   const selectItemsreducer = useSelector(SelectedProductList);
   const selectItems = selectItemsreducer.SelectedProductList;
   const [TotalPrice, SetTotalPrice] = useState(0);
@@ -64,14 +65,15 @@ const Billing = () => {
   return (
     <div className="billing-container ">
       <div className="billing-head pt-3">
-        <p>Take Away</p>
+        <p>{location.state ? "Dinein" : "Take Away"}</p>
         <div className="img-div">
           <img src={wifi} alt="" />
           <img src={cus} alt="" />
           <img src={use} alt="" />
         </div>
       </div>
-      <div className="billing-lable mt-3">
+      <div className="billing-lable mt-3  lg:space-x-40 md:space-x-20">
+        <p>{location.state && location.state.tablename}</p>
         <p>Bill No:1</p>
       </div>
       <div className="bill-items">

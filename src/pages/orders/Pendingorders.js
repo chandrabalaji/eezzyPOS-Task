@@ -100,7 +100,7 @@ const Pendingorders = () => {
             <select
               name=""
               id=""
-              className="bg-dark-black border px-2 py-1  rounded-sm"
+              className="bg-dark-black border px-2 py-1  rounded-sm  "
             >
               <option value="">10</option>
               <option value="">20</option>

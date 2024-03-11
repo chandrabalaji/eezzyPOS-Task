@@ -17,7 +17,6 @@ const Menulist = () => {
   const Allproduct = useSelector(productslist);
   const Dispatch = useDispatch();
   const products = Allproduct?.products?.getProducts?.data;
-
   const { data, error, loading } = useQuery(GET_PRODUCTS, {
     variables: {
       business_id: 1,
@@ -40,7 +39,6 @@ const Menulist = () => {
           .includes(search.toLowerCase().replace(/\s+/g, ""))
       )
     : products;
-  // console.log(Searchproducts);
 
   const handleSelect = (data) => {
     Dispatch(SelectedAction(data));
@@ -67,7 +65,7 @@ const Menulist = () => {
           </div>
         </div>
         <div>
-          <Link className="KOT" to='/KotKitchen'>
+          <Link className="KOT" to="/KotKitchen">
             <img src={kot} alt="" />
 
             <p>KOT</p>
@@ -100,16 +98,3 @@ const Menulist = () => {
 };
 
 export default Menulist;
-
-// redux toolkit  dispatch
-
-// const handleSelect = (data) => {
-//   Dispatch(
-//     SelectedAction({
-//       type: "AddProduct",
-//       payload: {
-//         SelectProducts: data,
-//       },
-//     })
-//   );
-// console.log(data);

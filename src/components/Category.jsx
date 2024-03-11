@@ -17,7 +17,6 @@ const Category = () => {
   const Dispatch = useDispatch();
   const AllCategoryreducer = useSelector(categorys);
   const AllCategory = AllCategoryreducer?.categorys.getAllCategory;
-
   const { data, error, loading } = useQuery(GET_CATEGORIES, {
     variables: {
       business_id: 1,
@@ -26,7 +25,6 @@ const Category = () => {
       outlet_id: 1,
     },
   });
-
   useEffect(() => {
     if (data && data.getAllCategory) {
       Dispatch(CategoryAction(data));
